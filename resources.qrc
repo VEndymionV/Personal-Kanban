@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/icons/calendar256.png</file>
+        <file>res/icons/diagram256.png</file>
+        <file>res/icons/notification256.png</file>
+        <file>res/icons/plus256.png</file>
+        <file>res/icons/settings256.png</file>
+        <file>res/icons/summary256.png</file>
+        <file>res/icons/switchOFF256.png</file>
+        <file>res/icons/switchON256.png</file>
+        <file>res/icons/tick-inside-circle256.png</file>
+        <file>res/icons/tmeline256.png</file>
+        <file>res/icons/to-do256.png</file>
+        <file>res/icons/wrench-and-screwdriver-in-cross256.png</file>
+    </qresource>
+</RCC>
