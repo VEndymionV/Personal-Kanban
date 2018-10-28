@@ -309,7 +309,7 @@
        </layout>
       </item>
       <item row="1" column="4">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="centralVLayout_Done">
         <item>
          <spacer name="verticalSpacer_3">
           <property name="orientation">
@@ -356,7 +356,7 @@
        </layout>
       </item>
       <item row="1" column="0">
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <layout class="QVBoxLayout" name="centralVLayout_Todo">
         <item>
          <spacer name="verticalSpacer">
           <property name="orientation">
@@ -403,7 +403,7 @@
        </layout>
       </item>
       <item row="1" column="2">
-       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <layout class="QVBoxLayout" name="centralVLayout_InProgress">
         <item>
          <spacer name="verticalSpacer_2">
           <property name="orientation">
