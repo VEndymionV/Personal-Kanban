@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "taskdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -7,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     nightMode(false)
 {
     ui->setupUi(this);
-    ui->stackedWidget->setCurrentIndex(StackedIndex::SUMMARY);
+    ui->stackedWidget->setCurrentIndex(StackedIndex::KANBAN);
 }
 
 MainWindow::~MainWindow()
@@ -57,9 +58,8 @@ void MainWindow::on_pBtn_NightMode_clicked()
 
 }
 
-void MainWindow::on_pBtn_TodoAdd_clicked()
-{
-
+void MainWindow::on_pBtn_TodoAdd_clicked() {
+    taskDialog.exec();
 }
 
 void MainWindow::on_pBtn_InProgressAdd_clicked()

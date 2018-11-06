@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "taskdialog.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -51,6 +53,8 @@ private:
     QIcon nightModeIconOn;
     QIcon nightModeIconOff;
     bool nightMode;
+    // temp
+    TaskDialog taskDialog;
 };
 
 #endif // MAINWINDOW_H
