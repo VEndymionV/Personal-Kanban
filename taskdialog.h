@@ -5,9 +5,6 @@
 #include <QLabel>
 #include <QDateTimeEdit>
 
-//class QDateTimeEdit;
-//class QLabel;
-
 namespace Ui {
 class TaskDialog;
 }
@@ -25,17 +22,11 @@ private slots:
 
     void on_timeCheckBox_stateChanged(int arg1);
 
+    void on_buttonBox_rejected();
+
 private:
     Ui::TaskDialog *ui;
 
-    //QDateTimeEdit beginDateTimeEdit;
-   // QDateTimeEdit endDateTimeEdit;
-   // QLabel beginDateTimeEditLabel;
-    //QLabel endDateTimeEditLabel;
-    //QWidget *beginDateTimeEdit;
-    //QLabel beginDateTimeEditLabel;
-    //QWidget *endDateTimeEdit;
-    //QLabel endDateTimeEditLabel;
     QDateEdit beginDateEdit;
     QDateTimeEdit beginDateTimeEdit;
     QDateEdit endDateEdit;
@@ -44,8 +35,16 @@ private:
     QDateTimeEdit *beginActualDateEdit;
     QDateTimeEdit *endActualDateEdit;
 
+    QString taskName;
+    QString taskDescription;
+    QString taskPriority;
+    QString taskBeginDate;
+    QString taskBeginTime;
+    QString taskEndDate;
+    QString taskEndTime;
 
-    //bool validate(QString name, QString description, );
+
+    bool validate(QString name, QString description, QDate beginDate, QDate endDate, QTime beginTime, QTime endTime);
 };
 
 #endif // TASKDIALOG_H

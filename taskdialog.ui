@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>301</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -109,13 +109,6 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QCheckBox" name="rememberCheckBox">
-       <property name="text">
-        <string>Zapamiętaj</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QCheckBox" name="timeCheckBox">
        <property name="text">

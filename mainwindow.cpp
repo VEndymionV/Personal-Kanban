@@ -59,6 +59,7 @@ void MainWindow::on_pBtn_NightMode_clicked()
 }
 
 void MainWindow::on_pBtn_TodoAdd_clicked() {
+    TaskDialog taskDialog;
     taskDialog.exec();
 }
 

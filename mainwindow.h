@@ -54,7 +54,7 @@ private:
     QIcon nightModeIconOff;
     bool nightMode;
     // temp
-    TaskDialog taskDialog;
+    //TaskDialog taskDialog;
 };
 
 #endif // MAINWINDOW_H

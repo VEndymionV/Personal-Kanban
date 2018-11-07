@@ -9,27 +9,15 @@ TaskDialog::TaskDialog(QWidget *parent) :
     ui(new Ui::TaskDialog)
 {
     ui->setupUi(this);
-    /*
-    // TODO Tymczasowo tak robię
-    //
-    beginDateTimeEditLabel.setText(ui->beginDateLabel->text());
-    endDateTimeEditLabel.setText(ui->endDateLabel->text());
-    // Usuwam
-    ui->formLayout->removeRow(4);
-    ui->formLayout->removeRow(3);
-    //
-    beginDateTimeEdit = new QDateEdit();
-    endDateTimeEdit = new QDateEdit();
-    //
-    ui->formLayout->insertRow(3, &beginDateTimeEditLabel, beginDateTimeEdit);
-    ui->formLayout->insertRow(4, &endDateTimeEditLabel, endDateTimeEdit);
-    */
-    //
+
     beginActualDateEdit = &beginDateEdit;
     endActualDateEdit = &endDateEdit;
     ui->formLayout->setWidget(3, QFormLayout::FieldRole, beginActualDateEdit);
     ui->formLayout->setWidget(4, QFormLayout::FieldRole, endActualDateEdit);
 
+    QDate current = QDate::currentDate();
+    beginActualDateEdit->setDate(current);
+    endActualDateEdit->setDate(current);
 }
 
 TaskDialog::~TaskDialog()
@@ -39,30 +27,23 @@ TaskDialog::~TaskDialog()
 
 void TaskDialog::on_buttonBox_accepted()
 {
-    qDebug() << "accepted!";
-    qDebug() << ui->nameEdit->text();
-    //qDebug() << ui->descriptionEdit->text();
-    qDebug() << ui->priorityEdit->text();
-    //qDebug() << ui->beginDateEdit->text();
-    //delete ui->beginDateEdit;
-    //ui->formLayout->insertRow(3, ui->beginDateLabel, new QDateTimeEdit());
-   // qDebug() << ui->endDateEdit->text();
-    qDebug() << ui->rememberCheckBox->isChecked();
+    QString name = ui->nameEdit->text();
+    QString description = ui->descriptionEdit->toPlainText();
+    QDate beginDate = beginActualDateEdit->date();
+    QDate endDate = endActualDateEdit->date();
+    QTime beginTime = beginActualDateEdit->time();
+    QTime endTime = endActualDateEdit->time();
 
-    if(ui->rememberCheckBox->isChecked()){
-
+    if(validate(name, description, beginDate, endDate, beginTime, endTime)){
+        taskName = name;
+        taskDescription = description;
+        taskPriority = ui->priorityEdit->text();
+        taskBeginDate = beginActualDateEdit->date().toString();
+        //this->accept();
     }
     else{
-        ui->nameEdit->clear();
-        ui->descriptionEdit->clear();
-        ui->priorityEdit->clear();
-        beginDateEdit.clear();
-        beginDateTimeEdit.clear();
-        endDateEdit.clear();
-        endDateTimeEdit.clear();
+        // TODO Komunikat o błędnych danych
     }
-    this->accept();
-    //this->hide();
 }
 
 void TaskDialog::on_timeCheckBox_stateChanged(int state) {
@@ -94,87 +75,24 @@ void TaskDialog::on_timeCheckBox_stateChanged(int state) {
     // Ustawienie wskaźników
     beginActualDateEdit = replacementB;
     endActualDateEdit = replacementE;
-/*
-    if(state){
-        // Kopia danych
-        beginDateTimeEdit.setDate(beginDateEdit.date());
-        endDateTimeEdit.setDate(endDateEdit.date());
-        // Podmiana widgetu
-        ui->formLayout->replaceWidget(&beginDateEdit, &beginDateTimeEdit);
-        beginDateEdit.hide();
-        beginDateTimeEdit.show();
+}
 
-        ui->formLayout->replaceWidget(&endDateEdit, &endDateTimeEdit);
-        endDateEdit.hide();
-        endDateTimeEdit.show();
-    }
-    else{
-        // Kopia danych
-        beginDateEdit.setDate(beginDateTimeEdit.date());
-        endDateEdit.setDate(endDateTimeEdit.date());
+void TaskDialog::on_buttonBox_rejected()
+{
+    this->reject();
+}
 
-        ui->formLayout->replaceWidget(&beginDateTimeEdit, &beginDateEdit);
-        beginDateTimeEdit.hide();
-        beginDateEdit.show();
+bool TaskDialog::validate(QString name, QString description, QDate beginDate, QDate endDate, QTime beginTime, QTime endTime)
+{
+    if(name.isEmpty() || description.isEmpty())
+        return false;
 
-        ui->formLayout->replaceWidget(&endDateTimeEdit, &endDateEdit);
-        endDateTimeEdit.hide();
-        endDateEdit.show();
-    }
-    */
-    /*
-    // TODO pozycja zmiany daty jest tutaj ustawiona na sztywno, w przypadku zmiany kolejności będzie problem
-    if(state){
-        beginDateTimeEditLabel.setText(ui->beginDateLabel->text());
-        beginDateTimeEdit.setDate(ui->beginDateEdit->date());
+    // TODO Dalsza walidacja, jeżeli potrzebna.
+    if(!beginDate.isValid() || !endDate.isValid())
+        return false;
 
-        endDateTimeEditLabel.setText(ui->endDateLabel->text());
-        endDateTimeEdit.setDate(ui->endDateEdit->date());
+    if(!beginTime.isValid() || !endTime.isValid())
+        return false;
 
-        ui->beginDateLabel->hide();
-        ui->beginDateEdit->hide();
-
-        ui->endDateLabel->hide();
-        ui->endDateEdit->hide();
-
-        ui->formLayout->removeRow(4);
-        ui->formLayout->removeRow(3);
-
-        ui->formLayout->insertRow(3, &beginDateTimeEditLabel, &beginDateTimeEdit);
-        ui->formLayout->insertRow(4, &endDateTimeEditLabel, &endDateTimeEdit);
-
-        beginDateTimeEditLabel.show();
-        beginDateTimeEdit.show();
-
-        endDateTimeEditLabel.show();
-        endDateTimeEdit.show();
-    }
-    else{
-        qDebug() << ui->beginDateLabel->text();
-//        ui->beginDateLabel->setText(beginDateTimeEditLabel.text());
-//        ui->beginDateEdit->setDate(beginDateTimeEdit.date());
-
-//        ui->endDateLabel->setText(endDateTimeEditLabel.text());
-//        ui->endDateEdit->setDate(endDateTimeEdit.date());
-
-        beginDateTimeEditLabel.hide();
-        beginDateTimeEdit.hide();
-
-        endDateTimeEditLabel.hide();
-        endDateTimeEdit.hide();
-
-        ui->formLayout->removeRow(4);
-        ui->formLayout->removeRow(3);
-
-        ui->formLayout->insertRow(3, ui->beginDateLabel, ui->beginDateEdit);
-        ui->formLayout->insertRow(4, ui->endDateEdit, ui->endDateEdit);
-
-        ui->beginDateLabel->show();
-        ui->beginDateEdit->show();
-
-        ui->endDateLabel->show();
-        ui->endDateEdit->show();
-
-    }
-*/
+    return true;
 }
