@@ -35,6 +35,7 @@ private:
     QDateTimeEdit *beginActualDateEdit;
     QDateTimeEdit *endActualDateEdit;
 
+    //to ma iść do task
     QString taskName;
     QString taskDescription;
     QString taskPriority;
@@ -43,8 +44,19 @@ private:
     QString taskEndDate;
     QString taskEndTime;
 
+    bool state;
+
 
     bool validate(QString name, QString description, QDate beginDate, QDate endDate, QTime beginTime, QTime endTime);
+public:
+    QString getname();
+    QString gettaskDesciption();
+    QString gettaskPriority();
+    QString gettaskBeginDate();
+    QString gettaskBeginTime();
+    QString gettaskEndDate();
+    QString gettaskEndTime();
+    bool getState();
 };
 
 #endif // TASKDIALOG_H

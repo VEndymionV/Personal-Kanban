@@ -278,42 +278,6 @@
             </item>
            </layout>
           </item>
-          <item row="0" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QLabel" name="label_Todo">
-              <property name="font">
-               <font>
-                <family>Segoe UI Black</family>
-                <pointsize>10</pointsize>
-                <weight>75</weight>
-                <bold>true</bold>
-               </font>
-              </property>
-              <property name="text">
-               <string>TO-DO</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item row="1" column="1">
-           <widget class="Line" name="line_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="3">
-           <widget class="Line" name="line_4">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
           <item row="0" column="4">
            <layout class="QHBoxLayout" name="horizontalLayout_6">
             <item>
@@ -336,72 +300,46 @@
             </item>
            </layout>
           </item>
-          <item row="1" column="4">
-           <layout class="QVBoxLayout" name="centralVLayout_Done">
+          <item row="0" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
-             <spacer name="verticalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pBtn_DoneAdd">
-              <property name="styleSheet">
-               <string notr="true">#pushButton_8 {
-        background: transparent;
-}
-
-#pushButton_9 {
-        background: transparent;
-}
-
-#pushButton_10 {
-        background: transparent;
-}</string>
+             <widget class="QLabel" name="label_Todo">
+              <property name="font">
+               <font>
+                <family>Segoe UI Black</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="text">
-               <string/>
+               <string>TO-DO</string>
               </property>
-              <property name="icon">
-               <iconset resource="resources.qrc">
-                <normaloff>:/res/icons/plus256.png</normaloff>:/res/icons/plus256.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>40</width>
-                <height>40</height>
-               </size>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
               </property>
              </widget>
             </item>
            </layout>
           </item>
-          <item row="1" column="0">
-           <layout class="QVBoxLayout" name="centralVLayout_Todo">
-            <item>
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pBtn_TodoAdd">
-              <property name="styleSheet">
-               <string notr="true">#pushButton_8 {
+          <item row="1" column="3">
+           <widget class="Line" name="line_4">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="Line" name="line_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="pBtn_InProgressAdd">
+            <property name="styleSheet">
+             <string notr="true">#pushButton_8 {
         background: transparent;
 }
 
@@ -412,70 +350,192 @@
 #pushButton_10 {
         background: transparent;
 }</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="resources.qrc">
-                <normaloff>:/res/icons/plus256.png</normaloff>:/res/icons/plus256.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>40</width>
-                <height>40</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-           </layout>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/res/icons/plus256.png</normaloff>:/res/icons/plus256.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pBtn_TodoAdd">
+            <property name="styleSheet">
+             <string notr="true">#pushButton_8 {
+        background: transparent;
+}
+
+#pushButton_9 {
+        background: transparent;
+}
+
+#pushButton_10 {
+        background: transparent;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/res/icons/plus256.png</normaloff>:/res/icons/plus256.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="4">
+           <widget class="QPushButton" name="pBtn_DoneAdd">
+            <property name="styleSheet">
+             <string notr="true">#pushButton_8 {
+        background: transparent;
+}
+
+#pushButton_9 {
+        background: transparent;
+}
+
+#pushButton_10 {
+        background: transparent;
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="resources.qrc">
+              <normaloff>:/res/icons/plus256.png</normaloff>:/res/icons/plus256.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>40</width>
+              <height>40</height>
+             </size>
+            </property>
+           </widget>
           </item>
           <item row="1" column="2">
-           <layout class="QVBoxLayout" name="centralVLayout_InProgress">
-            <item>
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pBtn_InProgressAdd">
-              <property name="styleSheet">
-               <string notr="true">#pushButton_8 {
-        background: transparent;
-}
-
-#pushButton_9 {
-        background: transparent;
-}
-
-#pushButton_10 {
-        background: transparent;
-}</string>
-              </property>
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="resources.qrc">
-                <normaloff>:/res/icons/plus256.png</normaloff>:/res/icons/plus256.png</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>40</width>
-                <height>40</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-           </layout>
+           <widget class="QScrollArea" name="scrollArea_2">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_4">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>259</width>
+               <height>287</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <item>
+               <layout class="QVBoxLayout" name="centralVLayout_InProgress">
+                <item>
+                 <spacer name="verticalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_3">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>260</width>
+               <height>287</height>
+              </rect>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <layout class="QVBoxLayout" name="centralVLayout_Todo">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="verticalSpacer">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QScrollArea" name="scrollArea_3">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents_6">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>260</width>
+               <height>287</height>
+              </rect>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <layout class="QVBoxLayout" name="centralVLayout_Done">
+                <item>
+                 <spacer name="verticalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+             </layout>
+            </widget>
+           </widget>
           </item>
          </layout>
         </item>
@@ -569,7 +629,7 @@
      <x>0</x>
      <y>0</y>
      <width>853</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

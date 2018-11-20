@@ -3,13 +3,15 @@
 #include <QDebug>
 #include <QDateEdit>
 #include <QDateTimeEdit>
+#include "mainwindow.h"
+#include<task.h>
 
 TaskDialog::TaskDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TaskDialog)
 {
     ui->setupUi(this);
-
+    //wszystko co ma task w nazwie idzie do task.cpp
     beginActualDateEdit = &beginDateEdit;
     endActualDateEdit = &endDateEdit;
     ui->formLayout->setWidget(3, QFormLayout::FieldRole, beginActualDateEdit);
@@ -39,10 +41,18 @@ void TaskDialog::on_buttonBox_accepted()
         taskDescription = description;
         taskPriority = ui->priorityEdit->text();
         taskBeginDate = beginActualDateEdit->date().toString();
-        //this->accept();
+
+
+
+
+
+        state = true;
+        this->accept();
+
     }
     else{
         // TODO Komunikat o błędnych danych
+        state = false;
     }
 }
 
@@ -79,6 +89,7 @@ void TaskDialog::on_timeCheckBox_stateChanged(int state) {
 
 void TaskDialog::on_buttonBox_rejected()
 {
+    state = false;
     this->reject();
 }
 
@@ -95,4 +106,34 @@ bool TaskDialog::validate(QString name, QString description, QDate beginDate, QD
         return false;
 
     return true;
+}
+
+QString TaskDialog::getname()
+{
+return taskName;
+}
+QString TaskDialog::gettaskDesciption()
+{
+return taskDescription;
+}
+QString TaskDialog::gettaskPriority()
+{
+return taskPriority;
+}
+QString TaskDialog::gettaskBeginDate()
+{
+return taskBeginDate;
+}
+QString TaskDialog::gettaskBeginTime()
+{
+return taskBeginTime;
+}
+QString TaskDialog::gettaskEndDate()
+{
+    return taskEndDate;
+}
+
+bool TaskDialog::getState()
+{
+ return state;
 }
