@@ -81,6 +81,8 @@ void MainWindow::on_pBtn_TodoAdd_clicked() {
     //lista dwukierunkowa
    // ui->centralVLayout_Todo->removeWidget()
 
+
+
 }
 
 void MainWindow::on_pBtn_InProgressAdd_clicked()
