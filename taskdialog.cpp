@@ -8,7 +8,7 @@
 
 TaskDialog::TaskDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TaskDialog), state(false)
+    ui(new Ui::TaskDialog), timeState(false), errorState(false)
 {
     ui->setupUi(this);
     //wszystko co ma task w nazwie idzie do task.cpp
@@ -37,23 +37,26 @@ void TaskDialog::on_buttonBox_accepted()
     QTime endTime = endActualDateEdit->time();
 
     if(validate(name, description, beginDate, endDate, beginTime, endTime)){
-        taskName = name;
-        taskDescription = description;
-        taskPriority = ui->priorityEdit->text();
-        taskBeginDate = beginActualDateEdit->date().toString();
-        taskEndDate = endActualDateEdit->date().toString();
-
-
-
-
-
-        state = true;
+        taskData.name = name;
+        taskData.description = description;
+        taskData.priority = ui->priorityEdit->text();
+        taskData.beginDate = beginActualDateEdit->date().toString();
+        taskData.endDate = endActualDateEdit->date().toString();
+        if(timeState){
+            taskData.beginTime = beginActualDateEdit->time().toString();
+            taskData.endTime = endActualDateEdit->time().toString();
+        }
+        else{
+            taskData.beginTime = "";
+            taskData.endTime = "";
+        }
+        errorState = false;
         this->accept();
 
     }
     else{
         // TODO Komunikat o błędnych danych
-        state = false;
+        errorState = true;
     }
 }
 
@@ -65,12 +68,14 @@ void TaskDialog::on_timeCheckBox_stateChanged(int state) {
         replacementB = &beginDateTimeEdit;
         endActualDateEdit = &endDateEdit;
         replacementE = &endDateTimeEdit;
+        timeState = true;
     }
     else{
         beginActualDateEdit = &beginDateTimeEdit;
         replacementB = &beginDateEdit;
         endActualDateEdit = &endDateTimeEdit;
         replacementE = &endDateEdit;
+        timeState = false;
     }
     // Kopia danych
     replacementB->setDate(beginActualDateEdit->date());
@@ -90,7 +95,7 @@ void TaskDialog::on_timeCheckBox_stateChanged(int state) {
 
 void TaskDialog::on_buttonBox_rejected()
 {
-    state = false;
+    errorState = true;
     this->reject();
 }
 
@@ -103,7 +108,7 @@ bool TaskDialog::validate(QString name, QString description, QDate beginDate, QD
     if(!beginDate.isValid() || !endDate.isValid())
         return false;
 
-    if(!beginTime.isValid() || !endTime.isValid())
+    if(timeState && (!beginTime.isValid() || !endTime.isValid()))
         return false;
 
     return true;
@@ -136,7 +141,7 @@ QString TaskDialog::gettaskEndDate()
 
 bool TaskDialog::getState()
 {
-    return state;
+    return errorState;
 }
 
 TaskDialog::TaskData TaskDialog::getData()

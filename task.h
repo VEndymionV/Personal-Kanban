@@ -35,7 +35,7 @@ private slots:
 
     void on_pushButton_left_clicked();
 
-    void on_pushButton__cancel_clicked();
+    void on_pushButton_cancel_clicked();
 
 private:
     Ui::Task *ui;

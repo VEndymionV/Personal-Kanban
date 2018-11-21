@@ -2,6 +2,7 @@
 #include <QVBoxLayout>
 #include "taskdialog.h"
 #include "task.h"
+#include <QDebug>
 
 
 /*
@@ -14,17 +15,21 @@ TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBox
 
 }
 
-void TaskManagement::addNewTask(QString taskName, QString taskDescription, QString taskPriority,
-                                QString taskBeginDate, QString taskEndDate, QString taskBeginTime,
-                                QString taskEndTime)
+void TaskManagement::addNewTask()
 {
+    TaskDialog taskDialog;
+    taskDialog.exec();
+    if(taskDialog.getState()){
+        return;
+    }
 
-    if(taskBeginTime.isEmpty() || taskEndTime.isEmpty()){
-        // wyświetlenie samej daty
-        toDoLayout->insertWidget(0, new Task(taskName, taskDescription, taskPriority, taskBeginDate, taskEndDate));
+    TaskDialog::TaskData taskData = taskDialog.getData();
+    if(taskData.beginTime.isEmpty()){
+        toDoLayout->insertWidget(0, new Task(taskData.name, taskData.description, taskData.priority,
+                                             taskData.beginDate, taskData.endDate));
     }
     else{
-        // wyświetlenie daty i czasu
-        toDoLayout->insertWidget(0, new Task(taskName, taskDescription, taskPriority, taskBeginDate, taskEndDate, taskBeginTime, taskEndTime));
+        toDoLayout->insertWidget(0, new Task(taskData.name, taskData.description, taskData.priority,
+                                             taskData.beginDate, taskData.endDate, taskData.beginTime, taskData.endTime));
     }
 }

@@ -17,13 +17,13 @@ public:
     explicit TaskDialog(QWidget *parent = nullptr);
     ~TaskDialog();
     struct TaskData {
-        QString taskName;
-        QString taskDescription;
-        QString taskPriority;
-        QString taskBeginDate;
-        QString taskBeginTime;
-        QString taskEndDate;
-        QString taskEndTime;
+        QString name;
+        QString description;
+        QString priority;
+        QString beginDate;
+        QString beginTime;
+        QString endDate;
+        QString endTime;
     };
 
 private slots:
@@ -55,7 +55,8 @@ private:
     QString taskEndDate;
     QString taskEndTime;
 
-    bool state;
+    bool timeState;
+    bool errorState;
 
 
     bool validate(QString name, QString description, QDate beginDate, QDate endDate, QTime beginTime, QTime endTime);

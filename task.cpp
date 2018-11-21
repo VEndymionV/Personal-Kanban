@@ -10,8 +10,6 @@ Task::Task(QWidget *parent) :QWidget(parent),
 
     ui->setupUi(this);
 
-
-
 //sztywno
     taskName="TEST";
     taskDescription="TESTESTESTESTESTESTTESTTEST";
@@ -90,32 +88,17 @@ Task::~Task()
 //przesunięcie zadania w prawo
 void Task::on_pushButton_right_clicked()
 {
-    if(actualLayoutNumber == Layout::LEFT){
-        actualLayoutNumber = Layout::CENTER;
-    }
-    else if(actualLayoutNumber == Layout::CENTER){
-        actualLayoutNumber = Layout::RIGHT;
-    }
-    else{
-        // Tutaj nie może tego zrobić
-    }
+    emit rightClicked();
 
 }
 //przesunięcie zadania w lewo
 void Task::on_pushButton_left_clicked()
 {
-    if(actualLayoutNumber == Layout::RIGHT){
-        actualLayoutNumber = Layout::CENTER;
-    }
-    else if(actualLayoutNumber == Layout::CENTER){
-        actualLayoutNumber = Layout::LEFT;
-    }
-    else{
-        // Tutaj nie może tego zrobić
-    }
+    emit leftClicked();
 }
-//anulowanie zadania
-void Task::on_pushButton__cancel_clicked()
+
+
+void Task::on_pushButton_cancel_clicked()
 {
-    //delete ui;
+    emit removeClicked();
 }

@@ -62,19 +62,8 @@ void MainWindow::on_pBtn_NightMode_clicked()
 
 //docelowo jedyne tworzenie zadania
 void MainWindow::on_pBtn_TodoAdd_clicked() {
-    TaskDialog taskDialog;
-    taskDialog.exec();
-    if(!taskDialog.getState()){
-        return;
-    }
-    //pobieranie danych do konstruktora taska
-    QString temp=taskDialog.getname();
-    QString temp2=taskDialog.gettaskDesciption();
-    QString temp3=taskDialog.gettaskPriority();
-    QString temp4=taskDialog.gettaskBeginDate();
-    QString temp5=taskDialog.gettaskEndDate();
 
-    taskManagement->addNewTask(temp, temp2, temp3, temp4, temp5);
+    taskManagement->addNewTask();
     /*
     Task *task=new Task(nullptr,temp,temp2,temp3,temp4,temp5);
     ui->centralVLayout_Todo->insertWidget(0,task);

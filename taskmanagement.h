@@ -2,6 +2,7 @@
 #define TASKMANAGEMENT_H
 
 #include <QWidget>
+#include "taskdialog.h"
 
 class QVBoxLayout;
 
@@ -9,9 +10,7 @@ class TaskManagement
 {
 public:
     TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done);
-    void addNewTask(QString taskName, QString taskDescription, QString taskPriority,
-                    QString taskBeginDate, QString taskEndDate, QString taskBeginTime = "",
-                    QString taskEndTime = "");
+    void addNewTask();
 private:
     QVBoxLayout *toDoLayout;
     QVBoxLayout *inProgressLayout;
