@@ -3,11 +3,17 @@
 
 #include "taskdialog.h"
 #include "task.h"
+#include <QVBoxLayout>
 
 class TaskManagement
 {
 public:
-    TaskManagement();
+    TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done);
+    void addNewTask();
+private:
+    QVBoxLayout *toDoLayout;
+    QVBoxLayout *inProgressLayout;
+    QVBoxLayout *doneLayout;
 };
 
 #endif // TASKMANAGEMENT_H

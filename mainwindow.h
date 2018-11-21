@@ -5,6 +5,8 @@
 
 #include "taskdialog.h"
 
+#include "taskmanagement.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -55,6 +57,7 @@ private:
     bool nightMode;
     // temp
     //TaskDialog taskDialog;
+    TaskManagement *taskManagement;
 };
 
 #endif // MAINWINDOW_H
