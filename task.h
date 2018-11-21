@@ -45,6 +45,11 @@ private:
     QLabel *Name;
     int wsk; //gdzie się znajduje zadanie
     int actualLayoutNumber;
+
+signals:
+    void removeClicked();
+    void leftClicked();
+    void rightClicked();
 };
 
 #endif // TASK_H

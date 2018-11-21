@@ -28,12 +28,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     taskdialog.cpp \
-    task.cpp
+    task.cpp \
+    taskmanagement.cpp
 
 HEADERS += \
         mainwindow.h \
     taskdialog.h \
-    task.h
+    task.h \
+    taskmanagement.h
 
 FORMS += \
         mainwindow.ui \
