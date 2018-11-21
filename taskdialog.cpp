@@ -8,7 +8,7 @@
 
 TaskDialog::TaskDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TaskDialog)
+    ui(new Ui::TaskDialog), state(false)
 {
     ui->setupUi(this);
     //wszystko co ma task w nazwie idzie do task.cpp
@@ -41,6 +41,7 @@ void TaskDialog::on_buttonBox_accepted()
         taskDescription = description;
         taskPriority = ui->priorityEdit->text();
         taskBeginDate = beginActualDateEdit->date().toString();
+        taskEndDate = endActualDateEdit->date().toString();
 
 
 
@@ -135,5 +136,10 @@ QString TaskDialog::gettaskEndDate()
 
 bool TaskDialog::getState()
 {
- return state;
+    return state;
+}
+
+TaskDialog::TaskData TaskDialog::getData()
+{
+    return taskData;
 }

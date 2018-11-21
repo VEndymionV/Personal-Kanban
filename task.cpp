@@ -2,6 +2,8 @@
 #include "ui_task.h"
 #include <QLabel>
 #include "mainwindow.h"
+#include <QDebug>
+
 Task::Task(QWidget *parent) :QWidget(parent),
     ui(new Ui::Task)
 {
@@ -43,7 +45,12 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
 
     ui->beginTime->hide();
     ui->endTime->hide();
+    ui->BEGINTIME->hide();
+    ui->ENDTIME->hide();
 
+    qDebug() << taskEndDate;
+
+    qDebug() << "!!!!";
 }
 
 Task::Task(QString taskName, QString taskDescription, QString taskPriority,

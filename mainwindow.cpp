@@ -74,6 +74,8 @@ void MainWindow::on_pBtn_TodoAdd_clicked() {
     QString temp4=taskDialog.gettaskBeginDate();
     QString temp5=taskDialog.gettaskEndDate();
 
+    taskManagement->addNewTask(temp, temp2, temp3, temp4, temp5);
+    /*
     Task *task=new Task(nullptr,temp,temp2,temp3,temp4,temp5);
     ui->centralVLayout_Todo->insertWidget(0,task);
     //klasa glowna que
@@ -83,7 +85,7 @@ void MainWindow::on_pBtn_TodoAdd_clicked() {
    // ui->centralVLayout_Todo->removeWidget()
 
 
-
+    */
 }
 
 void MainWindow::on_pBtn_InProgressAdd_clicked()
