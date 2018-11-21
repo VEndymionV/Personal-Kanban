@@ -1,7 +1,6 @@
 #include "task.h"
 #include "ui_task.h"
 #include <QLabel>
-#include "mainwindow.h"
 #include <QDebug>
 
 Task::Task(QWidget *parent) :QWidget(parent),
