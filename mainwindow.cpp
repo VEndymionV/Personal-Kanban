@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(StackedIndex::KANBAN);
+    taskManagement = new TaskManagement(ui->centralVLayout_Todo, ui->centralVLayout_InProgress, ui->centralVLayout_Done);
 }
 
 MainWindow::~MainWindow()
@@ -61,18 +62,9 @@ void MainWindow::on_pBtn_NightMode_clicked()
 
 //docelowo jedyne tworzenie zadania
 void MainWindow::on_pBtn_TodoAdd_clicked() {
-    TaskDialog taskDialog;
-    taskDialog.exec();
-    if(!taskDialog.getState()){
-        return;
-    }
-    //pobieranie danych do konstruktora taska
-    QString temp=taskDialog.getname();
-    QString temp2=taskDialog.gettaskDesciption();
-    QString temp3=taskDialog.gettaskPriority();
-    QString temp4=taskDialog.gettaskBeginDate();
-    QString temp5=taskDialog.gettaskEndDate();
 
+    taskManagement->addNewTask();
+    /*
     Task *task=new Task(nullptr,temp,temp2,temp3,temp4,temp5);
     ui->centralVLayout_Todo->insertWidget(0,task);
     //klasa glowna que
@@ -81,6 +73,8 @@ void MainWindow::on_pBtn_TodoAdd_clicked() {
     //lista dwukierunkowa
    // ui->centralVLayout_Todo->removeWidget()
 
+
+    */
 }
 
 void MainWindow::on_pBtn_InProgressAdd_clicked()

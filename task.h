@@ -20,6 +20,13 @@ class Task : public QWidget
 
 public:
     explicit Task(QWidget *parent = nullptr);
+    // Sama data
+    Task(QString taskName, QString taskDescription, QString taskPriority,
+         QString taskBeginDate, QString taskEndDate);
+    // Data + czas
+    Task(QString taskName, QString taskDescription, QString taskPriority,
+         QString taskBeginDate, QString taskEndDate, QString taskBeginTime,
+         QString taskEndTime);
     explicit Task(QWidget *parent, QString one,QString two,QString three,QString four,QString five);
     ~Task();
 
@@ -28,9 +35,7 @@ private slots:
 
     void on_pushButton_left_clicked();
 
-    void on_pushButton__cancel_clicked();
-
-    void on_Name_linkActivated(const QString &link);
+    void on_pushButton_cancel_clicked();
 
 private:
     Ui::Task *ui;
@@ -39,12 +44,17 @@ private:
     QString taskDescription;
     QString taskPriority;
     QString taskBeginDate;
-    QString taskBeginTime;
     QString taskEndDate;
+    QString taskBeginTime;
     QString taskEndTime;
-    QLabel *Name;
+    QLabel *nameLabel;
     int wsk; //gdzie się znajduje zadanie
     int actualLayoutNumber;
+
+signals:
+    void removeClicked();
+    void leftClicked();
+    void rightClicked();
 };
 
 #endif // TASK_H

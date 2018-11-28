@@ -16,6 +16,15 @@ class TaskDialog : public QDialog
 public:
     explicit TaskDialog(QWidget *parent = nullptr);
     ~TaskDialog();
+    struct TaskData {
+        QString name;
+        QString description;
+        QString priority;
+        QString beginDate;
+        QString beginTime;
+        QString endDate;
+        QString endTime;
+    };
 
 private slots:
     void on_buttonBox_accepted();
@@ -35,6 +44,8 @@ private:
     QDateTimeEdit *beginActualDateEdit;
     QDateTimeEdit *endActualDateEdit;
 
+    TaskData taskData;
+
     //to ma iść do task
     QString taskName;
     QString taskDescription;
@@ -44,7 +55,8 @@ private:
     QString taskEndDate;
     QString taskEndTime;
 
-    bool state;
+    bool timeState;
+    bool errorState;
 
 
     bool validate(QString name, QString description, QDate beginDate, QDate endDate, QTime beginTime, QTime endTime);
@@ -57,6 +69,7 @@ public:
     QString gettaskEndDate();
     QString gettaskEndTime();
     bool getState();
+    TaskData getData();
 };
 
 #endif // TASKDIALOG_H
