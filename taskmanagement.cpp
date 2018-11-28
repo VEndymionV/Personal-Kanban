@@ -3,6 +3,7 @@
 #include "taskdialog.h"
 #include "task.h"
 #include <QDebug>
+#include <algorithm>
 
 
 /*
@@ -114,6 +115,16 @@ void TaskManagement::refreshLayouts() {
 //        toDoLayout->insertWidget(0, task);
 //    }
 
+
+}
+
+void TaskManagement::sortByName()
+{
+    //std::sort(toDoTasks.begin(), toDoTasks.end(), Task::caseInsensitiveByName);
+}
+
+void TaskManagement::sortByDateAndTime()
+{
 
 }
 

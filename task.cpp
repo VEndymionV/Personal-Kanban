@@ -85,6 +85,18 @@ Task::~Task()
 
 }
 
+bool Task::caseInsensitiveByName(const Task *a, const Task *b)
+{
+    return a->taskName.toLower() < b->taskName.toLower();
+}
+
+bool Task::caseInsensitiveByDate(const Task &a, const Task &b)
+{
+    //return a.taskEndDate < b.taskEndDate;
+    // TODO
+    return true;
+}
+
 bool Task::isTimeDisplayed()
 {
     if(taskBeginTime.isEmpty() || taskEndTime.isEmpty())

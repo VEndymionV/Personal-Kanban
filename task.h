@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QDialog>
 #include <QLabel>
+#include <QLinkedList>
 namespace Ui {
 class Task;
 }
@@ -29,6 +30,9 @@ public:
          QString taskEndTime);
     explicit Task(QWidget *parent, QString one,QString two,QString three,QString four,QString five);
     ~Task();
+
+    static bool caseInsensitiveByName(const Task *a, const Task *b);
+    static bool caseInsensitiveByDate(const Task &a, const Task &b);
 
     bool isTimeDisplayed();
     void TEMPPROBAPROBA();

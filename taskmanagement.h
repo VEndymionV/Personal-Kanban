@@ -14,6 +14,8 @@ public:
     TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done);
     void addNewTask();
     void refreshLayouts();
+    void sortByName();
+    void sortByDateAndTime();
 private:
     QVBoxLayout *toDoLayout;
     QVBoxLayout *inProgressLayout;
