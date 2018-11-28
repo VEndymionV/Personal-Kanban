@@ -8,11 +8,11 @@ namespace Ui {
 class Task;
 }
 
-namespace Layout {
-    const int LEFT = -1;
-    const int CENTER = 0;
-    const int RIGHT = 1;
-}
+enum Layout{
+    toDo = 0,
+    inProgress = 1,
+    done = 2
+};
 
 class Task : public QWidget
 {
@@ -29,6 +29,11 @@ public:
          QString taskEndTime);
     explicit Task(QWidget *parent, QString one,QString two,QString three,QString four,QString five);
     ~Task();
+
+    bool isTimeDisplayed();
+    void TEMPPROBAPROBA();
+    int id;
+    Layout layoutNumber;
 
 private slots:
     void on_pushButton_right_clicked();
@@ -49,7 +54,7 @@ private:
     QString taskEndTime;
     QLabel *nameLabel;
     int wsk; //gdzie się znajduje zadanie
-    int actualLayoutNumber;
+
 
 signals:
     void removeClicked();

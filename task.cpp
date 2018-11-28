@@ -24,7 +24,6 @@ Task::Task(QWidget *parent) :QWidget(parent),
     ui->description->setText(taskDescription);
     ui->beginDate->setText(taskBeginDate);
     ui->endDate->setText(taskEndDate);
-    actualLayoutNumber = Layout::LEFT;
 }
 
 Task::Task(QString taskName, QString taskDescription, QString taskPriority,
@@ -45,7 +44,7 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
     ui->BEGINTIME->hide();
     ui->ENDTIME->hide();
 
-    qDebug() << taskEndDate;
+    layoutNumber = toDo;
 
     qDebug() << "!!!!";
 }
@@ -65,6 +64,8 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
     ui->beginTime->setText(taskBeginTime);
     ui->endTime->setText(taskEndTime);
 
+    layoutNumber = toDo;
+
 }
 
 Task::Task(QWidget *parent, QString one,QString two,QString three,QString four,QString five) :QWidget(parent),
@@ -77,12 +78,24 @@ Task::Task(QWidget *parent, QString one,QString two,QString three,QString four,Q
     ui->beginDate->setText(four);
     ui->endDate->setText(five);
     wsk=0;
-    actualLayoutNumber = Layout::LEFT;
 }
 
 Task::~Task()
 {
 
+}
+
+bool Task::isTimeDisplayed()
+{
+    if(taskBeginTime.isEmpty() || taskEndTime.isEmpty())
+        return false;
+
+    return true;
+}
+
+void Task::TEMPPROBAPROBA()
+{
+    qDebug() << "Proba: " << taskName;
 }
 //przesunięcie zadania w prawo
 void Task::on_pushButton_right_clicked()
