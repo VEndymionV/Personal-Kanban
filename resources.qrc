@@ -12,5 +12,8 @@
         <file>res/icons/tmeline256.png</file>
         <file>res/icons/to-do256.png</file>
         <file>res/icons/wrench-and-screwdriver-in-cross256.png</file>
+        <file>res/icons/arrowL.png</file>
+        <file>res/icons/arrowR.png</file>
+        <file>res/icons/redX.png</file>
     </qresource>
 </RCC>

@@ -183,8 +183,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/res/icons/canceltask.png</normaloff>:/res/icons/canceltask.png</iconset>
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/redX.png</normaloff>:/res/icons/redX.png</iconset>
        </property>
       </widget>
      </item>
@@ -200,8 +200,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/res/icons/leftarrow.png</normaloff>:/res/icons/leftarrow.png</iconset>
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/arrowL.png</normaloff>:/res/icons/arrowL.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -223,8 +223,8 @@
         <string/>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>:/res/icons/rightarrow.png</normaloff>:/res/icons/rightarrow.png</iconset>
+        <iconset resource="resources.qrc">
+         <normaloff>:/res/icons/arrowR.png</normaloff>:/res/icons/arrowR.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -251,6 +251,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
