@@ -3,6 +3,7 @@
 #include "taskdialog.h"
 #include "task.h"
 #include <QWidget>
+#include <QDebug>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow), nightModeIconOn(":/res/icons/switchON256.png"), nightModeIconOff(":/res/icons/switchOFF256.png"),
@@ -93,4 +94,15 @@ void MainWindow::on_pBtn_DoneAdd_clicked()
     ui->centralVLayout_InProgress->insertWidget(0,H);
     ui->centralVLayout_Done->insertWidget(0,K)
 ;
+}
+
+void MainWindow::on_pBtn_TODO_clicked()
+{
+    taskManagement->sortByName();
+    qDebug() << "MainWindows: sortuj";
+}
+
+void MainWindow::on_pBtn_AddFew_clicked()
+{
+    taskManagement->addFewTasks();
 }

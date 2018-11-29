@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "taskdialog.h"
 #include "task.h"
-#include <QLinkedList>
+#include <QList>
 
 class QVBoxLayout;
 
@@ -13,6 +13,7 @@ class TaskManagement : public QObject
 public:
     TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done);
     void addNewTask();
+    void addFewTasks();
     void refreshLayouts();
     void sortByName();
     void sortByDateAndTime();
@@ -20,9 +21,9 @@ private:
     QVBoxLayout *toDoLayout;
     QVBoxLayout *inProgressLayout;
     QVBoxLayout *doneLayout;
-    QLinkedList <Task*> toDoTasks;
-    QLinkedList <Task*> inProgressTasks;
-    QLinkedList <Task*> doneTasks;
+    QList <Task*> toDoTasks;
+    QList <Task*> inProgressTasks;
+    QList <Task*> doneTasks;
 
 public slots:
     void moveTaskLeft();

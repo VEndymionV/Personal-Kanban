@@ -437,7 +437,7 @@
                <x>0</x>
                <y>0</y>
                <width>340</width>
-               <height>350</height>
+               <height>348</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -473,7 +473,7 @@
                <x>0</x>
                <y>0</y>
                <width>341</width>
-               <height>350</height>
+               <height>348</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -515,7 +515,7 @@
                <x>0</x>
                <y>0</y>
                <width>341</width>
-               <height>350</height>
+               <height>348</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
@@ -618,11 +618,22 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pBtn_TODO">
-      <property name="text">
-       <string>TODO: Przycisk dodawania, dół aplikacji, polepszenie wyglądu, widok osi czasu, statystyk, powiadomień i ustawień</string>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pBtn_TODO">
+        <property name="text">
+         <string>Sortuj po nazwie</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pBtn_AddFew">
+        <property name="text">
+         <string>Dodaj kilka tasków</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

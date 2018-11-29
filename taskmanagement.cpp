@@ -26,26 +26,15 @@ void TaskManagement::addNewTask()
 
     TaskDialog::TaskData taskData = taskDialog.getData();
 
-    if(taskData.name == "Ulacha"){
-        for(int i = 0; i < 10; ++i){
-            Task *task = new Task(QString::number(i), "To jest fajny, przykladowy opis" + QString::number(i), QString::number(i % 4),
-                                  taskData.beginDate, taskData.endDate);
-            toDoTasks.push_front(task);
-            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
-            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
-            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
-        }
-    }
-    else{
-        Task *task = new Task(taskData.name, taskData.description, taskData.priority,
-                              taskData.beginDate, taskData.endDate);
+    Task *task = new Task(taskData.name, taskData.description, taskData.priority,
+                          taskData.beginDate, taskData.endDate);
 
-        toDoTasks.push_front(task);
+    toDoTasks.push_front(task);
 
-        QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
-        QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
-        QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
-    }
+    QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+    QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+    QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+
 
     refreshLayouts();
 
@@ -70,6 +59,21 @@ void TaskManagement::addNewTask()
 
 }
 
+void TaskManagement::addFewTasks()
+{
+    QString arr[] = {"Morele", "Gruszki", "Jabłka", "Kolega", "Dzwon", "Olejek", "Alkohol", "Mandarynka", "Karta",
+                    "Samochód", "Silnik", "Benzynowy", "Gaz", "Kefir", "Jajko"};
+    for(int i = 0; i < (int) (sizeof(arr) / sizeof(*arr)); ++i){
+        Task *task = new Task(arr[i], "To jest fajny, przykladowy opis.", QString::number(i % 4),
+                              "15.10.1997", "28.11.2018");
+        toDoTasks.push_front(task);
+        QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+        QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+        QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    }
+    refreshLayouts();
+}
+
 void TaskManagement::refreshLayouts() {
 
     while(QLayoutItem *item = toDoLayout->takeAt(0)){
@@ -86,7 +90,7 @@ void TaskManagement::refreshLayouts() {
 
     int i = 0;
 
-    for(QLinkedList <Task*>::const_reverse_iterator it = toDoTasks.rbegin(); it != toDoTasks.rend(); ++it){
+    for(QList <Task*>::const_reverse_iterator it = toDoTasks.rbegin(); it != toDoTasks.rend(); ++it){
         ++i;
         (*it)->id = toDoTasks.size() - i;
         (*it)->layoutNumber = toDo;
@@ -95,7 +99,7 @@ void TaskManagement::refreshLayouts() {
 
     i = 0;
 
-    for(QLinkedList <Task*>::const_reverse_iterator it = inProgressTasks.rbegin(); it != inProgressTasks.rend(); ++it){
+    for(QList <Task*>::const_reverse_iterator it = inProgressTasks.rbegin(); it != inProgressTasks.rend(); ++it){
         ++i;
         (*it)->id = inProgressTasks.size() - i;
         (*it)->layoutNumber = inProgress;
@@ -104,7 +108,7 @@ void TaskManagement::refreshLayouts() {
 
     i = 0;
 
-    for(QLinkedList <Task*>::const_reverse_iterator it = doneTasks.rbegin(); it != doneTasks.rend(); ++it){
+    for(QList <Task*>::const_reverse_iterator it = doneTasks.rbegin(); it != doneTasks.rend(); ++it){
         ++i;
         (*it)->id = doneTasks.size() - i;
         (*it)->layoutNumber = done;
@@ -120,7 +124,11 @@ void TaskManagement::refreshLayouts() {
 
 void TaskManagement::sortByName()
 {
-    //std::sort(toDoTasks.begin(), toDoTasks.end(), Task::caseInsensitiveByName);
+    qDebug() << "TaskManagement: sortuj";
+    std::sort(toDoTasks.begin(), toDoTasks.end(), Task::caseInsensitiveByName);
+    std::sort(inProgressTasks.begin(), inProgressTasks.end(), Task::caseInsensitiveByName);
+    std::sort(doneTasks.begin(), doneTasks.end(), Task::caseInsensitiveByName);
+    refreshLayouts();
 }
 
 void TaskManagement::sortByDateAndTime()
