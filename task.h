@@ -20,7 +20,6 @@ class Task : public QWidget
     Q_OBJECT
 
 public:
-    explicit Task(QWidget *parent = nullptr);
     // Sama data
     Task(QString taskName, QString taskDescription, QString taskPriority,
          QString taskBeginDate, QString taskEndDate);
@@ -28,14 +27,12 @@ public:
     Task(QString taskName, QString taskDescription, QString taskPriority,
          QString taskBeginDate, QString taskEndDate, QString taskBeginTime,
          QString taskEndTime);
-    explicit Task(QWidget *parent, QString one,QString two,QString three,QString four,QString five);
     ~Task();
 
     static bool caseInsensitiveByName(const Task *a, const Task *b);
     static bool caseInsensitiveByDate(const Task &a, const Task &b);
 
     bool isTimeDisplayed();
-    void TEMPPROBAPROBA();
     int id;
     Layout layoutNumber;
 
