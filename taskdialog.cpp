@@ -8,7 +8,7 @@
 
 TaskDialog::TaskDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TaskDialog), timeState(false), errorState(false)
+    ui(new Ui::TaskDialog), timeState(false), errorState(true)
 {
     ui->setupUi(this);
     //wszystko co ma task w nazwie idzie do task.cpp
