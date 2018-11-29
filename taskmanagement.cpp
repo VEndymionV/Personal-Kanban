@@ -5,11 +5,6 @@
 #include <QDebug>
 #include <algorithm>
 
-
-/*
- * Trzeba pomyśleć o zmianie QVBoxLayout na inny layout, przy tym layoucie ciężko będzie zrobić sortowanie.
- * Gdy taski będą przechowywane na liście to posortowanie listy nie wpłynie na posortowanie widoku w layoucie.
-*/
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
     : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done)
 {
@@ -37,26 +32,6 @@ void TaskManagement::addNewTask()
 
 
     refreshLayouts();
-
-
-
-
-
-
-
-
-//    if(taskData.beginTime.isEmpty()){
-//        toDoLayout->insertWidget(0, new Task(taskData.name, taskData.description, taskData.priority,
-//                                             taskData.beginDate, taskData.endDate));
-//    }
-//    else{
-//        toDoLayout->insertWidget(0, new Task(taskData.name, taskData.description, taskData.priority,
-//                                             taskData.beginDate, taskData.endDate, taskData.beginTime, taskData.endTime));
-//    }
-
-
-//    qDebug() << toDoLayout->indexOf()
-
 }
 
 void TaskManagement::addFewTasks()
@@ -71,11 +46,13 @@ void TaskManagement::addFewTasks()
         QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
         QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
     }
+
     refreshLayouts();
 }
 
 void TaskManagement::refreshLayouts() {
 
+    // Czyszczenie każdego z layoutów
     while(QLayoutItem *item = toDoLayout->takeAt(0)){
         delete item;
     }
@@ -87,9 +64,11 @@ void TaskManagement::refreshLayouts() {
     while(QLayoutItem *item = doneLayout->takeAt(0)){
         delete item;
     }
+    // Koniec czyszczenia
 
-    int i = 0;
+    int i = 0; // zmienna pomocnicza do ustalenia obecnego id taska
 
+    // Wypełnianie layoutów na podstawie kontenerów oraz ustawienie odpowiedniego id i layoutNumber
     for(QList <Task*>::const_reverse_iterator it = toDoTasks.rbegin(); it != toDoTasks.rend(); ++it){
         ++i;
         (*it)->id = toDoTasks.size() - i;
@@ -114,33 +93,29 @@ void TaskManagement::refreshLayouts() {
         (*it)->layoutNumber = done;
         doneLayout->insertWidget(0, *it);
     }
-
-//    foreach(Task *task, toDoTasks) {
-//        toDoLayout->insertWidget(0, task);
-//    }
-
-
 }
 
 void TaskManagement::sortByName()
 {
-    qDebug() << "TaskManagement: sortuj";
+    // sortuje po kolei każdy z kontenerów
     std::sort(toDoTasks.begin(), toDoTasks.end(), Task::caseInsensitiveByName);
     std::sort(inProgressTasks.begin(), inProgressTasks.end(), Task::caseInsensitiveByName);
     std::sort(doneTasks.begin(), doneTasks.end(), Task::caseInsensitiveByName);
-    refreshLayouts();
+
+    refreshLayouts(); // odświeżenie layoutów - czyli zsynchronizowanie kontenera z widokiem
 }
 
 void TaskManagement::sortByDateAndTime()
 {
-
+    // TODO
 }
 
 void TaskManagement::moveTaskLeft()
 {
-    qDebug() << "moveTaskLeft";
+    // ustalam który obiekt wysłał sygnał i rzutuje go na typ Task*
     Task *task = dynamic_cast<Task*>(sender());
 
+    // ustalam do której sekcji należy task wysyłający sygnał
     if(task->layoutNumber == toDo){
         doneTasks.push_front(task);
         toDoTasks.removeOne(task);
@@ -153,15 +128,17 @@ void TaskManagement::moveTaskLeft()
         inProgressTasks.push_front(task);
         doneTasks.removeOne(task);
     }
+    // task został usunięty z kontenera w którym się znajdował i dodany do nowego kontenera
 
-    refreshLayouts();
+    refreshLayouts(); // odświeżenie layoutów - czyli zsynchronizowanie kontenera z widokiem
 }
 
 void TaskManagement::moveTaskRight()
 {
-    qDebug() << "moveTaskRight";
+    // ustalam który obiekt wysłał sygnał i rzutuje go na typ Task*
     Task *task = dynamic_cast<Task*>(sender());
 
+    // ustalam do której sekcji należy task wysyłający sygnał
     if(task->layoutNumber == toDo){
         inProgressTasks.push_front(task);
         toDoTasks.removeOne(task);
@@ -174,35 +151,29 @@ void TaskManagement::moveTaskRight()
         toDoTasks.push_front(task);
         doneTasks.removeOne(task);
     }
+    // task został usunięty z kontenera w którym się znajdował i dodany do nowego kontenera
 
-    refreshLayouts();
+    refreshLayouts(); // odświeżenie layoutów - czyli zsynchronizowanie kontenera z widokiem
 }
 
 void TaskManagement::deleteTask()
 {
-    qDebug() << "deleteTask";
+    // ustalam który obiekt wysłał sygnał i rzutuje go na typ Task*
     Task *task = dynamic_cast<Task*>(sender());
 
+    // ustalam do której sekcji należy task wysyłający sygnał
     if(task->layoutNumber == toDo){
         toDoTasks.removeOne(task);
-//        toDoLayout->removeWidget(task);
     }
     else if(task->layoutNumber == inProgress){
-//        inProgressLayout->removeWidget(task);
         inProgressTasks.removeOne(task);
     }
     else{
-//        doneLayout->removeWidget(task);
         doneTasks.removeOne(task);
     }
+    // task został usunięty z kontenera w którym się znajdował
 
-    refreshLayouts();
+    delete task; // usunięcie obiektu
 
-    delete task;
-
-//    qDebug() << dynamic_cast<QVBoxLayout*> (task->layout())->indexOf(task);
-
-    //toDoLayout->removeWidget(task);
-    //inProgressLayout->removeWidget(task);
-    //doneLayout->removeWidget(task);
+    refreshLayouts(); // odświeżenie layoutów - czyli zsynchronizowanie kontenera z widokiem
 }

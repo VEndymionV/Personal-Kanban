@@ -46,7 +46,6 @@ private:
 
     TaskData taskData;
 
-    //to ma iść do task
     QString taskName;
     QString taskDescription;
     QString taskPriority;
@@ -61,13 +60,15 @@ private:
 
     bool validate(QString name, QString description, QDate beginDate, QDate endDate, QTime beginTime, QTime endTime);
 public:
-    QString getname();
-    QString gettaskDesciption();
-    QString gettaskPriority();
-    QString gettaskBeginDate();
-    QString gettaskBeginTime();
-    QString gettaskEndDate();
-    QString gettaskEndTime();
+    // TODO nieużywane, do usunięcia
+    QString getTaskName();
+    QString getTaskDescription();
+    QString getTaskPriority();
+    QString getTaskBeginDate();
+    QString getTaskBeginTime();
+    QString getTaskEndDate();
+    QString getTaskEndTime();
+    // Koniec nieużywanych
     bool getState();
     TaskData getData();
 };
