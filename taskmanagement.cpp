@@ -21,15 +21,22 @@ void TaskManagement::addNewTask()
 
     TaskDialog::TaskData taskData = taskDialog.getData();
 
-    Task *task = new Task(taskData.name, taskData.description, taskData.priority,
-                          taskData.beginDate, taskData.endDate);
+    Task *task;
+
+    if(taskData.beginTime.isEmpty() || taskData.endTime.isEmpty()){
+        task = new Task(taskData.name, taskData.description, taskData.priority,
+                              taskData.beginDate, taskData.endDate);
+    }
+    else{
+        task = new Task(taskData.name, taskData.description, taskData.priority,
+                              taskData.beginDate, taskData.endDate, taskData.beginTime, taskData.endTime);
+    }
 
     toDoTasks.push_front(task);
 
     QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
     QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
     QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
-
 
     refreshLayouts();
 }

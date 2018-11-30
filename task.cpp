@@ -36,6 +36,9 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
     ui->description->setText(taskDescription);
     ui->beginDate->setText(taskBeginDate);
     ui->endDate->setText(taskEndDate);
+
+    qDebug() << taskBeginTime << ", " << taskEndTime;
+
     ui->beginTime->setText(taskBeginTime);
     ui->endTime->setText(taskEndTime);
 
