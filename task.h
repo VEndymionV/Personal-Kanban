@@ -4,22 +4,22 @@
 #include <QWidget>
 #include <QDialog>
 #include <QLabel>
+#include <QLinkedList>
 namespace Ui {
 class Task;
 }
 
-namespace Layout {
-    const int LEFT = -1;
-    const int CENTER = 0;
-    const int RIGHT = 1;
-}
+enum Layout{
+    toDo = 0,
+    inProgress = 1,
+    done = 2
+};
 
 class Task : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit Task(QWidget *parent = nullptr);
     // Sama data
     Task(QString taskName, QString taskDescription, QString taskPriority,
          QString taskBeginDate, QString taskEndDate);
@@ -27,8 +27,14 @@ public:
     Task(QString taskName, QString taskDescription, QString taskPriority,
          QString taskBeginDate, QString taskEndDate, QString taskBeginTime,
          QString taskEndTime);
-    explicit Task(QWidget *parent, QString one,QString two,QString three,QString four,QString five);
     ~Task();
+
+    static bool caseInsensitiveByName(const Task *a, const Task *b);
+    static bool caseInsensitiveByDate(const Task &a, const Task &b);
+
+    bool isTimeDisplayed();
+    int id;
+    Layout layoutNumber;
 
 private slots:
     void on_pushButton_right_clicked();
@@ -49,7 +55,7 @@ private:
     QString taskEndTime;
     QLabel *nameLabel;
     int wsk; //gdzie się znajduje zadanie
-    int actualLayoutNumber;
+
 
 signals:
     void removeClicked();

@@ -3,30 +3,6 @@
 #include <QLabel>
 #include <QDebug>
 
-Task::Task(QWidget *parent) :QWidget(parent),
-    ui(new Ui::Task)
-{
-
-    ui->setupUi(this);
-
-//sztywno
-    taskName="TEST";
-    taskDescription="TESTESTESTESTESTESTTESTTEST";
-    taskPriority="21";
-    taskBeginDate="21.07.1588";
-    taskEndDate="21.07.2127";
-    wsk=0;
-
-
-    //przypisywanie
-    ui->name->setText(taskName);
-    ui->priority->setText(taskPriority);
-    ui->description->setText(taskDescription);
-    ui->beginDate->setText(taskBeginDate);
-    ui->endDate->setText(taskEndDate);
-    actualLayoutNumber = Layout::LEFT;
-}
-
 Task::Task(QString taskName, QString taskDescription, QString taskPriority,
            QString taskBeginDate, QString taskEndDate) : ui(new Ui::Task),
     taskName(taskName), taskDescription(taskDescription), taskPriority(taskPriority),
@@ -45,9 +21,7 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
     ui->BEGINTIME->hide();
     ui->ENDTIME->hide();
 
-    qDebug() << taskEndDate;
-
-    qDebug() << "!!!!";
+    layoutNumber = toDo;
 }
 
 Task::Task(QString taskName, QString taskDescription, QString taskPriority,
@@ -62,28 +36,40 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
     ui->description->setText(taskDescription);
     ui->beginDate->setText(taskBeginDate);
     ui->endDate->setText(taskEndDate);
+
+    qDebug() << taskBeginTime << ", " << taskEndTime;
+
     ui->beginTime->setText(taskBeginTime);
     ui->endTime->setText(taskEndTime);
 
-}
-
-Task::Task(QWidget *parent, QString one,QString two,QString three,QString four,QString five) :QWidget(parent),
-    ui(new Ui::Task)
-{
-    ui->setupUi(this);
-    ui->name->setText(one);
-    ui->description->setText(two);
-    ui->priority->setText(three);
-    ui->beginDate->setText(four);
-    ui->endDate->setText(five);
-    wsk=0;
-    actualLayoutNumber = Layout::LEFT;
+    layoutNumber = toDo;
 }
 
 Task::~Task()
 {
 
 }
+
+bool Task::caseInsensitiveByName(const Task *a, const Task *b)
+{
+    return a->taskName.toLower() < b->taskName.toLower();
+}
+
+bool Task::caseInsensitiveByDate(const Task &a, const Task &b)
+{
+    //return a.taskEndDate < b.taskEndDate;
+    // TODO
+    return true;
+}
+
+bool Task::isTimeDisplayed()
+{
+    if(taskBeginTime.isEmpty() || taskEndTime.isEmpty())
+        return false;
+
+    return true;
+}
+
 //przesunięcie zadania w prawo
 void Task::on_pushButton_right_clicked()
 {

@@ -3,6 +3,7 @@
 #include "taskdialog.h"
 #include "task.h"
 #include <QWidget>
+#include <QDebug>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow), nightModeIconOn(":/res/icons/switchON256.png"), nightModeIconOff(":/res/icons/switchOFF256.png"),
@@ -64,17 +65,6 @@ void MainWindow::on_pBtn_NightMode_clicked()
 void MainWindow::on_pBtn_TodoAdd_clicked() {
 
     taskManagement->addNewTask();
-    /*
-    Task *task=new Task(nullptr,temp,temp2,temp3,temp4,temp5);
-    ui->centralVLayout_Todo->insertWidget(0,task);
-    //klasa glowna que
-    //que to do
-    //que done
-    //lista dwukierunkowa
-   // ui->centralVLayout_Todo->removeWidget()
-
-
-    */
 }
 
 void MainWindow::on_pBtn_InProgressAdd_clicked()
@@ -82,15 +72,17 @@ void MainWindow::on_pBtn_InProgressAdd_clicked()
 
 }
 
-//do testowania taska, wywalić potem
 void MainWindow::on_pBtn_DoneAdd_clicked()
 {
-    Task *G=new Task;
-    Task *H=new Task;
-    Task *K=new Task;
-   //ui->centralVLayout_Todo->addWidget(G);
-    ui->centralVLayout_Todo->insertWidget(0,G);
-    ui->centralVLayout_InProgress->insertWidget(0,H);
-    ui->centralVLayout_Done->insertWidget(0,K)
-;
+}
+
+void MainWindow::on_pBtn_TODO_clicked()
+{
+    taskManagement->sortByName();
+    qDebug() << "MainWindows: sortuj";
+}
+
+void MainWindow::on_pBtn_AddFew_clicked()
+{
+    taskManagement->addFewTasks();
 }

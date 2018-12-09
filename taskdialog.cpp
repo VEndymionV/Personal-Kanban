@@ -8,7 +8,7 @@
 
 TaskDialog::TaskDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TaskDialog), timeState(false), errorState(false)
+    ui(new Ui::TaskDialog), timeState(false), errorState(true)
 {
     ui->setupUi(this);
     //wszystko co ma task w nazwie idzie do task.cpp
@@ -114,27 +114,27 @@ bool TaskDialog::validate(QString name, QString description, QDate beginDate, QD
     return true;
 }
 
-QString TaskDialog::getname()
+QString TaskDialog::getTaskName()
 {
-return taskName;
+    return taskName;
 }
-QString TaskDialog::gettaskDesciption()
+QString TaskDialog::getTaskDescription()
 {
-return taskDescription;
+    return taskDescription;
 }
-QString TaskDialog::gettaskPriority()
+QString TaskDialog::getTaskPriority()
 {
-return taskPriority;
+    return taskPriority;
 }
-QString TaskDialog::gettaskBeginDate()
+QString TaskDialog::getTaskBeginDate()
 {
-return taskBeginDate;
+    return taskBeginDate;
 }
-QString TaskDialog::gettaskBeginTime()
+QString TaskDialog::getTaskBeginTime()
 {
-return taskBeginTime;
+    return taskBeginTime;
 }
-QString TaskDialog::gettaskEndDate()
+QString TaskDialog::getTaskEndDate()
 {
     return taskEndDate;
 }

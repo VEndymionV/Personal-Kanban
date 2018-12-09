@@ -49,6 +49,10 @@ private slots:
 
     void on_pBtn_DoneAdd_clicked();
 
+    void on_pBtn_TODO_clicked();
+
+    void on_pBtn_AddFew_clicked();
+
 private:
     Ui::MainWindow *ui;
     // icons:
