@@ -23,6 +23,10 @@ public:
     void sortByName();
     // TODO sortowanie po dacie i czasie
     void sortByDateAndTime();
+    //wczytywanie taskow z pliku json
+    void LoadTasks(QString filename);
+    //test
+    void TaskManagement::addNew(Task* A);
 
 private:
     // trzy sekcje - trzy layouty:

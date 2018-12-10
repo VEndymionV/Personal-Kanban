@@ -4,7 +4,9 @@
 #include "task.h"
 #include <QDebug>
 #include <algorithm>
-
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
     : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done)
 {
@@ -40,6 +42,36 @@ void TaskManagement::addNewTask()
 
     refreshLayouts();
 }
+void TaskManagement::LoadTasks(QString filename)
+{
+    QFile read(filename);
+    read.open(QFile::ReadOnly);
+    QJsonDocument docred=QJsonDocument().fromJson(read.readAll());
+    QJsonArray arr=docred.array();
+    QString name=docred["name"].toString();
+    QString priority=docred["priority"].toString();
+    QString description=docred["description"].toString();
+    QString beginDate=docred["beginDate"].toString();
+    QString endDate=docred["endDate"].toString();
+
+    Task *tsk=new Task(docred["name"].toString() ,docred["description"].toString(),docred["priority"].toString(),docred["beginDate"].toString(),docred["endDate"].toString());
+    //Task *tsk=new Task(name,description,priority,beginDate,endDate); //tak tez mozna, ale wtedy trzeba dodatkowe zmienne deklarowac
+    toDoTasks.push_front(tsk);
+
+    //toDoLayout->insertWidget(0,tsk);
+    QObject::connect(tsk, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+    QObject::connect(tsk, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+    QObject::connect(tsk, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    refreshLayouts();
+}
+
+void TaskManagement::addNew(Task* A)
+{
+    toDoLayout->insertWidget(0,A);
+    refreshLayouts();
+
+}
+
 
 void TaskManagement::addFewTasks()
 {
@@ -100,6 +132,9 @@ void TaskManagement::refreshLayouts() {
         (*it)->layoutNumber = done;
         doneLayout->insertWidget(0, *it);
     }
+
+
+    //tutaj wstawić zapisywanie do jsona
 }
 
 void TaskManagement::sortByName()
