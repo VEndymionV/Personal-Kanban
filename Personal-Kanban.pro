@@ -29,13 +29,15 @@ SOURCES += \
         mainwindow.cpp \
     taskdialog.cpp \
     task.cpp \
-    taskmanagement.cpp
+    taskmanagement.cpp \
+    jsonmanager.cpp
 
 HEADERS += \
         mainwindow.h \
     taskdialog.h \
     task.h \
-    taskmanagement.h
+    taskmanagement.h \
+    jsonmanager.h
 
 FORMS += \
         mainwindow.ui \

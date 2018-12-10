@@ -8,7 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
-    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done)
+    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks)
 {
 
 }
@@ -132,6 +132,8 @@ void TaskManagement::refreshLayouts() {
         (*it)->layoutNumber = done;
         doneLayout->insertWidget(0, *it);
     }
+
+    jsonManager.saveToJsonFile();
 
 
     //tutaj wstawić zapisywanie do jsona

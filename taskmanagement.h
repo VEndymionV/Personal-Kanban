@@ -5,6 +5,7 @@
 #include "taskdialog.h"
 #include "task.h"
 #include <QList>
+#include <jsonmanager.h>
 
 class QVBoxLayout;
 
@@ -37,6 +38,8 @@ private:
     QList <Task*> toDoTasks;
     QList <Task*> inProgressTasks;
     QList <Task*> doneTasks;
+
+    JsonManager jsonManager;
 
     /*
      * Sloty otrzymują sygnał z konkretnego obiektu klasy Task, rozpoznają go po jego polach - id oraz layoutNumber

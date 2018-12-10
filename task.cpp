@@ -70,6 +70,11 @@ bool Task::isTimeDisplayed()
     return true;
 }
 
+Task::TaskData Task::getTaskData()
+{
+    return TaskData(taskName, taskDescription, taskPriority, taskBeginDate, taskBeginTime, taskEndDate, taskEndTime);
+}
+
 //przesunięcie zadania w prawo
 void Task::on_pushButton_right_clicked()
 {

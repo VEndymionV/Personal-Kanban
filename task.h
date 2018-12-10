@@ -20,6 +20,21 @@ class Task : public QWidget
     Q_OBJECT
 
 public:
+    struct TaskData {
+        TaskData(QString name, QString description, QString priority,
+                 QString beginDate, QString beginTime, QString endDate,
+                 QString endTime) : name(name), description(description), priority(priority),
+            beginDate(beginDate), beginTime(beginTime), endDate(endDate), endTime(endTime){
+
+        }
+        QString name;
+        QString description;
+        QString priority;
+        QString beginDate;
+        QString beginTime;
+        QString endDate;
+        QString endTime;
+    };
     // Sama data
     Task(QString taskName, QString taskDescription, QString taskPriority,
          QString taskBeginDate, QString taskEndDate);
@@ -35,6 +50,8 @@ public:
     bool isTimeDisplayed();
     int id;
     Layout layoutNumber;
+
+    TaskData getTaskData();
 
 private slots:
     void on_pushButton_right_clicked();

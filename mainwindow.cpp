@@ -19,34 +19,34 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(StackedIndex::KANBAN);
     taskManagement = new TaskManagement(ui->centralVLayout_Todo, ui->centralVLayout_InProgress, ui->centralVLayout_Done);
-
+/*
     //testowanie jsona- do wyjebania do innej klasy jak zacznie działać
 
     QJsonObject test2; //przykładowy task- potem będzie się to ściągać za pomocą np. taskmanager->todolayout->task.name czy cos
-        test2.contains("name"); //tworzymy typ danej w jsonie
-        test2.contains("priority");
-        test2.contains("description");
-        test2.contains("beginDate");
-        test2.contains("endDate");
+//    test2.contains("name"); //tworzymy typ danej w jsonie
+//    test2.contains("priority");
+//    test2.contains("description");
+//    test2.contains("beginDate");
+//    test2.contains("endDate");
 
-        test2["name"]= "Zygmunt ";
-        test2["priority"]=21;
-        test2["description"]="Michauuuu";
-        test2["beginDate"]="21.03.02";
-        test2["endDate"]="21.04.03";
+    test2["name"]= "Zygmunt ";
+    test2["priority"]=21;
+    test2["description"]="Michauuuu";
+    test2["beginDate"]="21.03.02";
+    test2["endDate"]="21.04.03";
 
-        QJsonObject test22;
-            test22.contains("name");
-            test22.contains("priority");
-            test22.contains("description");
-            test22.contains("beginDate");
-            test22.contains("endDate");
+    QJsonObject test22;
+//    test22.contains("name");
+//    test22.contains("priority");
+//    test22.contains("description");
+//    test22.contains("beginDate");
+//    test22.contains("endDate");
 
-            test22["name"]= " SHEIL";
-            test22["priority"]=1;
-            test22["description"]="pkeeeeeeee";
-            test22["beginDate"]="1.03.02";
-            test22["endDate"]="21.04.3";
+    test22["name"]= " SHEIL";
+    test22["priority"]=1;
+    test22["description"]="pkeeeeeeee";
+    test22["beginDate"]="1.03.02";
+    test22["endDate"]="21.04.3";
 
     //zapisywanie macierzom
     QJsonArray arr;
@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
          //to działa jak jest tylko jeden task
 
-        /*
+
 
         QString name=test4["name"].toString();
         QString priority=test4["priority"].toString();
@@ -92,11 +92,11 @@ MainWindow::MainWindow(QWidget *parent) :
         QString endDate=test4["endDate"].toString();
         Task *A=new Task(name,description,priority,beginDate,endDate);
         taskManagement->addNew(A);
-        */
 
 
 
 
+*/
 
 }
 
