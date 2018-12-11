@@ -16,6 +16,8 @@ public:
     TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done);
     // dodawanie nowego taska do sekcji toDo
     void addNewTask();
+    // dodawanie nowego taska do sekcji toDo na podstawie taskData - wykorzystywane przy wczytywaniu z pliku .json
+    void addNewTask(Task::TaskData taskData);
     // dodawanie kilku tasków do sekcji toDo
     void addFewTasks();
     // czyści wszystkie trzy layouty a potem dodaje w odpowiedniej kolejności elementy z trzech kontenerów (synchronizacja)
@@ -24,6 +26,12 @@ public:
     void sortByName();
     // TODO sortowanie po dacie i czasie
     void sortByDateAndTime();
+
+
+
+
+
+
     //wczytywanie taskow z pliku json
     void LoadTasks(QString filename);
     //test

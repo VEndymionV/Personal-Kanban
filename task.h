@@ -21,6 +21,7 @@ class Task : public QWidget
 
 public:
     struct TaskData {
+        //TaskData(); // BEZ KONSTRUKTORA DOMYŚLNEGO QVECTOR POWODOWAŁ BŁĄD KOMPILACJI - SPRAWDZIĆ CZEMU TAK SIĘ DZIEJE
         TaskData(QString name, QString description, QString priority,
                  QString beginDate, QString beginTime, QString endDate,
                  QString endTime) : name(name), description(description), priority(priority),
@@ -42,6 +43,7 @@ public:
     Task(QString taskName, QString taskDescription, QString taskPriority,
          QString taskBeginDate, QString taskEndDate, QString taskBeginTime,
          QString taskEndTime);
+    Task(TaskData taskData);
     ~Task();
 
     static bool caseInsensitiveByName(const Task *a, const Task *b);

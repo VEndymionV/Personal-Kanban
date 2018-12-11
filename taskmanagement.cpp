@@ -10,7 +10,15 @@
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
     : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks)
 {
+    jsonManager.loadFromJsonFile();
 
+    for(auto task : toDoTasks){
+        QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+        QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+        QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    }
+
+    refreshLayouts();
 }
 
 void TaskManagement::addNewTask()
@@ -35,6 +43,19 @@ void TaskManagement::addNewTask()
     }
 
     toDoTasks.push_front(task);
+
+    QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+    QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+    QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+
+    refreshLayouts();
+}
+
+void TaskManagement::addNewTask(Task::TaskData taskData)
+{
+    Task *task = new Task(taskData);
+
+    toDoTasks.push_back(task);
 
     QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
     QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
