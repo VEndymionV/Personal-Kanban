@@ -46,7 +46,7 @@ private:
     QList <Task*> toDoTasks;
     QList <Task*> inProgressTasks;
     QList <Task*> doneTasks;
-
+public:
     JsonManager jsonManager;
 
     /*

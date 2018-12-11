@@ -8,15 +8,29 @@
 #include <QJsonObject>
 #include <QJsonArray>
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
-    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks)
+    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks,inProgressTasks,doneTasks)
 {
-    jsonManager.loadFromJsonFile();
+    jsonManager.loadFromJsonFile(0,"toDoTasks.json");
+    jsonManager.loadFromJsonFile(1,"inProgressTasks.json");
+    jsonManager.loadFromJsonFile(2,"doneTasks.json");
 
     for(auto task : toDoTasks){
         QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
         QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
         QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
     }
+    for(auto task : inProgressTasks){
+        QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+        QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+        QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    }
+
+    for(auto task : doneTasks){
+        QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+        QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+        QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    }
+
 
     refreshLayouts();
 }

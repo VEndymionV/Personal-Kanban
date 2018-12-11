@@ -8,11 +8,13 @@ class Task;
 class JsonManager
 {
 public:
-    JsonManager(QList <Task*> &toDoTasks, const QString &fileName = "toDoTasks.json");
+    JsonManager(QList<Task *> &toDoTasks,QList <Task*> &inProgressTasks,QList <Task*> &doneTasks, const QString &fileName = "toDoTasks.json");
     bool saveToJsonFile();
-    bool loadFromJsonFile();
+    bool loadFromJsonFile(int wsk,QString name);
 private:
     QList <Task*> &toDoTasks; // referencja na kontener z klasy TaskManager
+    QList <Task*> &inProgressTasks; // referencja na kontener z klasy TaskManager
+    QList <Task*> &doneTasks; // referencja na kontener z klasy TaskManager
 
     QString fileName;
 
