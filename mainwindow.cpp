@@ -10,14 +10,17 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QList>
+#include "stylesheet.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow), nightModeIconOn(":/res/icons/switchON256.png"), nightModeIconOff(":/res/icons/switchOFF256.png"),
     nightMode(false)
+
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(StackedIndex::KANBAN);
+    setStyleSheet( mywidget_style_light );
     taskManagement = new TaskManagement(ui->centralVLayout_Todo, ui->centralVLayout_InProgress, ui->centralVLayout_Done);
     //JsonManager jsonmanager(taskManagement->toDoTasks,taskManagement->inProgressTasks,taskManagement->doneTasks)
 
@@ -67,11 +70,15 @@ void MainWindow::on_pBtn_Settings_clicked()
 void MainWindow::on_pBtn_NightMode_clicked()
 {
     nightMode = !nightMode;
-    if(nightMode){
+    if(nightMode)
+    {
         ui->pBtn_NightMode->setIcon(nightModeIconOn);
+        setStyleSheet( mywidget_style_dark );
     }
-    else{
+    else
+    {
         ui->pBtn_NightMode->setIcon(nightModeIconOff);
+        setStyleSheet( mywidget_style_light );
     }
 
 }

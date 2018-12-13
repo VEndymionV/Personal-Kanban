@@ -37,7 +37,8 @@ HEADERS += \
     taskdialog.h \
     task.h \
     taskmanagement.h \
-    jsonmanager.h
+    jsonmanager.h \
+    stylesheet.h
 
 FORMS += \
         mainwindow.ui \

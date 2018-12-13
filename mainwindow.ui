@@ -13,6 +13,22 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">&lt;style&gt;
+MainWindow,QPushButton,QFrame#TASKFRAME,Task QLabel,QWidget#scrollAreaWidgetContents_3,QWidget#scrollAreaWidgetContents_4,QWidget#scrollAreaWidgetContents_6,{                    
+                background-color: dimgray;         
+                color: lightgrey;        
+                 border: 1px solid lightgrey;        
+                 border-radius: 4px;        
+                padding: 2px;        
+            }
+
+QScrollBar { 
+            color: lightgrey;         \
+            background-color: dimgray;           \
+            }
+&lt;/style&gt;</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -436,8 +452,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>340</width>
-               <height>348</height>
+               <width>344</width>
+               <height>378</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -472,8 +488,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>341</width>
-               <height>348</height>
+               <width>345</width>
+               <height>378</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -514,8 +530,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>341</width>
-               <height>348</height>
+               <width>345</width>
+               <height>378</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
@@ -643,7 +659,7 @@
      <x>0</x>
      <y>0</y>
      <width>1108</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

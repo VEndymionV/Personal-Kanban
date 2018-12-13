@@ -35,7 +35,7 @@ public:
     //wczytywanie taskow z pliku json
     void LoadTasks(QString filename);
     //test
-    void TaskManagement::addNew(Task* A);
+    void addNew(Task* A);
 
 private:
     // trzy sekcje - trzy layouty:
