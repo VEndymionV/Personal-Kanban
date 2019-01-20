@@ -45,7 +45,7 @@ bool JsonManager::saveToJsonFile()
     {
         jsonArray2.push_back(write(task2));
     }
-    for(auto task3: inProgressTasks)
+    for(auto task3: doneTasks)
     {
         jsonArray3.push_back(write(task3));
     }
