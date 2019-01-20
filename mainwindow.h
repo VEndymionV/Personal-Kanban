@@ -53,6 +53,10 @@ private slots:
 
     void on_pBtn_AddFew_clicked();
 
+    void on_calendarWidget_activated(const QDate &date);
+
+    void on_calendarWidget_clicked(const QDate &date);
+
 private:
     Ui::MainWindow *ui;
     // icons:
