@@ -7,6 +7,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <timelinemenager.h>
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
     : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks,inProgressTasks,doneTasks)
 {

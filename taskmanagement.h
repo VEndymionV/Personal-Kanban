@@ -6,7 +6,7 @@
 #include "task.h"
 #include <QList>
 #include <jsonmanager.h>
-
+#include <timelinemenager.h>
 class QVBoxLayout;
 
 class TaskManagement : public QObject
@@ -48,7 +48,7 @@ private:
     QList <Task*> doneTasks;
 public:
     JsonManager jsonManager;
-
+    Timelinemenager timelinemenager;
     /*
      * Sloty otrzymują sygnał z konkretnego obiektu klasy Task, rozpoznają go po jego polach - id oraz layoutNumber
     */
