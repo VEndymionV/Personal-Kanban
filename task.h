@@ -54,6 +54,7 @@ public:
     Layout layoutNumber;
 
     TaskData getTaskData();
+    QString getStartingData();
 
 private slots:
     void on_pushButton_right_clicked();

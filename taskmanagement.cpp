@@ -9,7 +9,7 @@
 #include <QJsonArray>
 #include <timelinemenager.h>
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
-    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks,inProgressTasks,doneTasks)
+    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks,inProgressTasks,doneTasks),timelinemenager(toDoTasks,inProgressTasks,doneTasks)
 {
     jsonManager.loadFromJsonFile(0,"toDoTasks.json");
     jsonManager.loadFromJsonFile(1,"inProgressTasks.json");

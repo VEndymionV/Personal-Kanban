@@ -106,7 +106,10 @@ Task::TaskData Task::getTaskData()
 {
     return TaskData(taskName, taskDescription, taskPriority, taskBeginDate, taskBeginTime, taskEndDate, taskEndTime);
 }
-
+QString Task::getStartingData()
+{
+    return taskBeginDate;
+}
 //przesunięcie zadania w prawo
 void Task::on_pushButton_right_clicked()
 {
