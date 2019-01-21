@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //taskManagement->jsonManager.loadFromJsonFile(1,"inProgressTasks.json");
     //taskManagement->jsonManager.loadFromJsonFile(2,"doneTasks.json");
     taskManagement->refreshLayouts();
+ui->calendar_Layout;
 
 }
 

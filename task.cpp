@@ -13,6 +13,7 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
     ui->name->setText(taskName);
     ui->priority->setText(taskPriority);
     ui->description->setText(taskDescription);
+    ui->description->setWordWrap(true);
     ui->beginDate->setText(taskBeginDate);
     ui->endDate->setText(taskEndDate);
 
