@@ -250,7 +250,7 @@ QScrollBar {
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -454,8 +454,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>340</width>
-               <height>348</height>
+               <width>344</width>
+               <height>378</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_11">
@@ -490,8 +490,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>341</width>
-               <height>348</height>
+               <width>345</width>
+               <height>378</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -532,8 +532,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>341</width>
-               <height>348</height>
+               <width>345</width>
+               <height>378</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
@@ -590,8 +590,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>1060</width>
-               <height>403</height>
+               <width>1068</width>
+               <height>432</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -602,22 +602,15 @@ QScrollBar {
                   <property name="selectedDate">
                    <date>
                     <year>2019</year>
-                    <month>1</month>
-                    <day>20</day>
+                    <month>2</month>
+                    <day>1</day>
                    </date>
                   </property>
                   <property name="minimumDate">
                    <date>
                     <year>2019</year>
                     <month>1</month>
-                    <day>20</day>
-                   </date>
-                  </property>
-                  <property name="maximumDate">
-                   <date>
-                    <year>2019</year>
-                    <month>1</month>
-                    <day>27</day>
+                    <day>1</day>
                    </date>
                   </property>
                   <property name="gridVisible">
@@ -730,7 +723,7 @@ QScrollBar {
      <x>0</x>
      <y>0</y>
      <width>1108</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -30,7 +30,8 @@ SOURCES += \
     taskdialog.cpp \
     task.cpp \
     taskmanagement.cpp \
-    jsonmanager.cpp
+    jsonmanager.cpp \
+    timelinemenager.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -38,7 +39,8 @@ HEADERS += \
     task.h \
     taskmanagement.h \
     jsonmanager.h \
-    stylesheet.h
+    stylesheet.h \
+    timelinemenager.h
 
 FORMS += \
         mainwindow.ui \
