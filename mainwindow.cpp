@@ -21,14 +21,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(StackedIndex::KANBAN);
     setStyleSheet( mywidget_style_light );
-    taskManagement = new TaskManagement(ui->centralVLayout_Todo, ui->centralVLayout_InProgress, ui->centralVLayout_Done);
+    taskManagement = new TaskManagement(ui->centralVLayout_Todo, ui->centralVLayout_InProgress, ui->centralVLayout_Done,ui->calendar_Layout);
     //JsonManager jsonmanager(taskManagement->toDoTasks,taskManagement->inProgressTasks,taskManagement->doneTasks)
 
     //taskManagement->jsonManager.loadFromJsonFile(0,"toDoTasks.json");
     //taskManagement->jsonManager.loadFromJsonFile(1,"inProgressTasks.json");
     //taskManagement->jsonManager.loadFromJsonFile(2,"doneTasks.json");
     taskManagement->refreshLayouts();
-ui->calendar_Layout;
+//ui->calendar_Layout;
 
 }
 

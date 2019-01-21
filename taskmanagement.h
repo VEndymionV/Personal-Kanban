@@ -13,7 +13,7 @@ class TaskManagement : public QObject
 {
 public:
     // konstruktor przyjmuje trzy wskaźniki na kolejne layouty
-    TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done);
+    TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done,QVBoxLayout *calendar);
     // dodawanie nowego taska do sekcji toDo
     void addNewTask();
     // dodawanie nowego taska do sekcji toDo na podstawie taskData - wykorzystywane przy wczytywaniu z pliku .json
@@ -42,10 +42,12 @@ private:
     QVBoxLayout *toDoLayout;
     QVBoxLayout *inProgressLayout;
     QVBoxLayout *doneLayout;
+    QVBoxLayout *calendarLayout;
     // trzy sekcje - trzy kontenery synchronizujące się z layoutami poprzez metodę refreshLayouts()
     QList <Task*> toDoTasks;
     QList <Task*> inProgressTasks;
     QList <Task*> doneTasks;
+    QList <Task*> calendarTasks;
 public:
     JsonManager jsonManager;
     Timelinemenager timelinemenager;

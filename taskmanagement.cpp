@@ -8,8 +8,8 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <timelinemenager.h>
-TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
-    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks,inProgressTasks,doneTasks),timelinemenager(toDoTasks,inProgressTasks,doneTasks)
+TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done,QVBoxLayout *calendar)
+    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done),calendarLayout(calendar),jsonManager(toDoTasks,inProgressTasks,doneTasks),timelinemenager(toDoTasks,inProgressTasks,doneTasks,calendarTasks)
 {
     jsonManager.loadFromJsonFile(0,"toDoTasks.json");
     jsonManager.loadFromJsonFile(1,"inProgressTasks.json");
@@ -126,7 +126,7 @@ void TaskManagement::addFewTasks()
 }
 
 void TaskManagement::refreshLayouts() {
-
+    timelinemenager.readtimeline();
     // Czyszczenie każdego z layoutów
     while(QLayoutItem *item = toDoLayout->takeAt(0)){
         delete item;
@@ -137,6 +137,10 @@ void TaskManagement::refreshLayouts() {
     }
 
     while(QLayoutItem *item = doneLayout->takeAt(0)){
+        delete item;
+    }
+    //michau
+    while(QLayoutItem *item = calendarLayout->takeAt(0)){
         delete item;
     }
     // Koniec czyszczenia
@@ -167,6 +171,15 @@ void TaskManagement::refreshLayouts() {
         (*it)->id = doneTasks.size() - i;
         (*it)->layoutNumber = done;
         doneLayout->insertWidget(0, *it);
+    }
+    //Michau- dam tez tutaj odswiezanie kalendarza
+    i = 0;
+
+    for(QList <Task*>::const_reverse_iterator it = calendarTasks.rbegin(); it != calendarTasks.rend(); ++it){
+        ++i;
+        (*it)->id = calendarTasks.size() - i;
+        //(*it)->layoutNumber = done;
+        calendarLayout->insertWidget(0, *it);
     }
 
     jsonManager.saveToJsonFile();
