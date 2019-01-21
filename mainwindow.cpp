@@ -11,6 +11,8 @@
 #include <QJsonArray>
 #include <QList>
 #include "stylesheet.h"
+#include <QFileDialog>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    taskManagement->jsonManager.saveToJsonFile();
+    taskManagement->jsonManager.saveToJsonFiles();
     delete ui;
 }
 
@@ -110,5 +112,29 @@ void MainWindow::on_pBtn_AddFew_clicked()
     taskManagement->addFewTasks();
 }
 
+void MainWindow::on_pBtn_SaveToFile_clicked()
+{
+    QFileDialog fileDialog(this);
+//    fileDialog.setNameFilter("All C++ files (*.cpp *.cc *.C *.cxx *.c++)");
+//    fileDialog.setNameFilter("Pliki json (*.json)");
+//    fileDialog.exec();
+    fileDialog.setDefaultSuffix("json");
+    QString fileName = fileDialog.getSaveFileName(this, "...");
+//    QString fileName = QFileDialog::getSaveFileName(this, "Wybierz gdzie zapisać plik", "wtf??");
+    qDebug() << fileName;
+    taskManagement->jsonManager.saveToJsonFile(fileName);
+}
 
+void MainWindow::on_pBtn_LoadFromFile_clicked()
+{
+    QFileDialog fileDialog(this);
 
+    fileDialog.setNameFilter("Pliki json (*.json)");
+//    fileDialog.exec();
+//    fileDialog.setDefaultSuffix("json");
+    QString fileName = fileDialog.getOpenFileName(this, "Wskaż plik .json");
+//    QString fileName = QFileDialog::getSaveFileName(this, "Wybierz gdzie zapisać plik", "wtf??");
+    qDebug() << fileName;
+    taskManagement->jsonManager.loadFromJsonFile(fileName);
+    taskManagement->refreshLayouts();
+}

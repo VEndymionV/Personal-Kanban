@@ -10,9 +10,9 @@
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
     : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done), jsonManager(toDoTasks,inProgressTasks,doneTasks)
 {
-    jsonManager.loadFromJsonFile(0,"toDoTasks.json");
-    jsonManager.loadFromJsonFile(1,"inProgressTasks.json");
-    jsonManager.loadFromJsonFile(2,"doneTasks.json");
+    jsonManager.loadFromJsonFiles(0, "toDoTasks.json");
+    jsonManager.loadFromJsonFiles(1, "inProgressTasks.json");
+    jsonManager.loadFromJsonFiles(2, "doneTasks.json");
 
     for(auto task : toDoTasks){
         QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
@@ -168,7 +168,7 @@ void TaskManagement::refreshLayouts() {
         doneLayout->insertWidget(0, *it);
     }
 
-    jsonManager.saveToJsonFile();
+    jsonManager.saveToJsonFiles();
 
 
     //tutaj wstawić zapisywanie do jsona

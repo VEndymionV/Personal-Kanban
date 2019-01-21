@@ -55,6 +55,10 @@ private slots:
 
 
 
+    void on_pBtn_SaveToFile_clicked();
+
+    void on_pBtn_LoadFromFile_clicked();
+
 private:
     Ui::MainWindow *ui;
     // icons:
