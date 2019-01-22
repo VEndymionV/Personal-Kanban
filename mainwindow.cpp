@@ -113,3 +113,8 @@ void MainWindow::on_pBtn_AddFew_clicked()
 
 
 
+
+void MainWindow::on_calendarWidget_clicked(const QDate &date)
+{
+
+}

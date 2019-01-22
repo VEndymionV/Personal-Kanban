@@ -55,6 +55,8 @@ private slots:
 
 
 
+    void on_calendarWidget_clicked(const QDate &date);
+
 private:
     Ui::MainWindow *ui;
     // icons:
