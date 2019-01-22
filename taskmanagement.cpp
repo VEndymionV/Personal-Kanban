@@ -126,7 +126,8 @@ void TaskManagement::addFewTasks()
 }
 
 void TaskManagement::refreshLayouts() {
-    timelinemenager.readtimeline();
+
+
     // Czyszczenie każdego z layoutów
     while(QLayoutItem *item = toDoLayout->takeAt(0)){
         delete item;
@@ -143,6 +144,8 @@ void TaskManagement::refreshLayouts() {
     while(QLayoutItem *item = calendarLayout->takeAt(0)){
         delete item;
     }
+
+
     // Koniec czyszczenia
 
     int i = 0; // zmienna pomocnicza do ustalenia obecnego id taska
@@ -181,7 +184,7 @@ void TaskManagement::refreshLayouts() {
         //(*it)->layoutNumber = done;
         calendarLayout->insertWidget(0, *it);
     }
-
+    timelinemenager.readtimeline();
     jsonManager.saveToJsonFile();
 
 

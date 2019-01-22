@@ -17,6 +17,13 @@ Timelinemenager::Timelinemenager(QList<Task *> &toDoTasks,QList <Task*> &inProgr
 }
 void Timelinemenager::readtimeline()
 {
+
+   //czyszczenie taskow
+  while(!calendarTasks.isEmpty())
+  {
+      calendarTasks.pop_back();
+  }
+
     for(auto task1:toDoTasks)
     {
        // qDebug() << "D1";
@@ -33,7 +40,14 @@ void Timelinemenager::readtimeline()
     }
     for(auto task2:inProgressTasks)
     {
-        if(task2->getStartingData()=="21.01.2019") calendarTasks.push_back(task2);
+        if(task2->getStartingData()=="21.01.2019")
+            //calendarTasks.push_back(task2);
+        {
+            Task* tmp=new Task(task2->getTaskData());
+            calendarTasks.push_back(tmp);
+            qDebug() << "Dodano taska do kalendarza";
+
+        }
     }
 
 
