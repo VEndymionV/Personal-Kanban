@@ -21,7 +21,7 @@ public:
     // dodawanie kilku tasków do sekcji toDo
     void addFewTasks();
     // czyści wszystkie trzy layouty a potem dodaje w odpowiedniej kolejności elementy z trzech kontenerów (synchronizacja)
-    void refreshLayouts();
+    void refreshLayouts(bool timeline = false);
     // sortowanie po nazwie taska
     void sortByName();
     // TODO sortowanie po dacie i czasie

@@ -18,11 +18,20 @@ Timelinemenager::Timelinemenager(QList<Task *> &toDoTasks,QList <Task*> &inProgr
 void Timelinemenager::readtimeline(QString date)
 {
 
+    for(auto it = calendarTasks.begin(); it != calendarTasks.end(); ++it){
+        delete *it;
+    }
+
+    calendarTasks.clear();
+
+
+
    //czyszczenie taskow
-  while(!calendarTasks.isEmpty())
-  {
-      calendarTasks.pop_back();
-  }
+//  while(!calendarTasks.isEmpty())
+//  {
+//      calendarTasks.last();
+//      calendarTasks.pop_back();
+//  }
 
 
 

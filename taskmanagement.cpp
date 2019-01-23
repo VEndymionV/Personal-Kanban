@@ -125,7 +125,27 @@ void TaskManagement::addFewTasks()
     refreshLayouts();
 }
 
-void TaskManagement::refreshLayouts() {
+void TaskManagement::refreshLayouts(bool timeline) {
+
+    if(timeline){
+
+        //michau
+        while(QLayoutItem *item = calendarLayout->takeAt(0)){
+            qDebug() << "Usuwam kalendarz";
+            delete item;
+        }
+
+        //Michau- dam tez tutaj odswiezanie kalendarza
+        int i = 0;
+
+        for(QList <Task*>::const_reverse_iterator it = calendarTasks.rbegin(); it != calendarTasks.rend(); ++it){
+            ++i;
+            (*it)->id = calendarTasks.size() - i;
+            //(*it)->layoutNumber = done;
+            calendarLayout->insertWidget(0, *it);
+        }
+        return;
+    }
 
 
     // Czyszczenie każdego z layoutów
@@ -140,10 +160,7 @@ void TaskManagement::refreshLayouts() {
     while(QLayoutItem *item = doneLayout->takeAt(0)){
         delete item;
     }
-    //michau
-    while(QLayoutItem *item = calendarLayout->takeAt(0)){
-        delete item;
-    }
+
 
 
     // Koniec czyszczenia
@@ -175,15 +192,7 @@ void TaskManagement::refreshLayouts() {
         (*it)->layoutNumber = done;
         doneLayout->insertWidget(0, *it);
     }
-    //Michau- dam tez tutaj odswiezanie kalendarza
-    i = 0;
 
-    for(QList <Task*>::const_reverse_iterator it = calendarTasks.rbegin(); it != calendarTasks.rend(); ++it){
-        ++i;
-        (*it)->id = calendarTasks.size() - i;
-        //(*it)->layoutNumber = done;
-        calendarLayout->insertWidget(0, *it);
-    }
     //timelinemenager.readtimeline("RIFRESZ MI SENPAJ");
     jsonManager.saveToJsonFile();
 

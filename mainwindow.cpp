@@ -116,11 +116,9 @@ void MainWindow::on_pBtn_AddFew_clicked()
 
 void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
-    taskManagement->timelinemenager.cleanup(); //nic nie robi w sumie
+//    taskManagement->timelinemenager.cleanup(); //nic nie robi w sumie
     QString tmp=date.toString("ddd MMM d yyyy");
     qDebug()<<tmp;
     taskManagement->timelinemenager.readtimeline(tmp); //pkeeee
-    taskManagement->refreshLayouts();
-
-
+    taskManagement->refreshLayouts(true);
 }
