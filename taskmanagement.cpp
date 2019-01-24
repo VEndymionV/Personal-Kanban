@@ -107,6 +107,28 @@ void TaskManagement::addNew(Task* A)
 
 }
 
+void TaskManagement::loadFromJsonFile(const QString &fileName)
+{
+    if(jsonManager.loadFromJsonFile(fileName)){
+        for(auto task : toDoTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
+        for(auto task : inProgressTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
+
+        for(auto task : doneTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
+    }
+}
+
 
 void TaskManagement::addFewTasks()
 {

@@ -139,20 +139,6 @@ bool JsonManager::loadFromJsonFile(const QString &fileName)
     }
 
 
-//    for(auto taskData : tasksData){
-//        toDoTasks.push_back(new Task(*taskData));
-//    }
-
-//    for(auto taskData : tasksData){
-//        inProgressTasks.push_back(new Task(*taskData));
-//    }
-
-//    for(auto taskData : tasksData){
-//        doneTasks.push_back(new Task(*taskData));
-//    }
-    \
-
-
     // tymczasowe czyszczenie pamieci po vectorze
     for(auto it = tasksData.begin(); it != tasksData.end(); ++it){
         delete (*it);

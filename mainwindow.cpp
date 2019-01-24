@@ -135,6 +135,7 @@ void MainWindow::on_pBtn_LoadFromFile_clicked()
     QString fileName = fileDialog.getOpenFileName(this, "Wskaż plik .json");
 //    QString fileName = QFileDialog::getSaveFileName(this, "Wybierz gdzie zapisać plik", "wtf??");
     qDebug() << fileName;
-    taskManagement->jsonManager.loadFromJsonFile(fileName);
+//    taskManagement->jsonManager.loadFromJsonFile(fileName);
+    taskManagement->loadFromJsonFile(fileName);
     taskManagement->refreshLayouts();
 }

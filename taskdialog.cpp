@@ -40,6 +40,11 @@ void TaskDialog::on_buttonBox_accepted()
         taskData.name = name;
         taskData.description = description;
         taskData.priority = ui->priorityEdit->text();
+        bool dateBool = false;
+        if(beginActualDateEdit->date() > endActualDateEdit->date()){
+            dateBool = true;
+            endActualDateEdit->setDate(beginActualDateEdit->date());
+        }
         taskData.beginDate = beginActualDateEdit->date().toString();
         taskData.endDate = endActualDateEdit->date().toString();
         if(timeState){
