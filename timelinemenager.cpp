@@ -7,12 +7,15 @@
 #include <QDebug>
 #include <QVector>
 #include <QCalendarWidget>
+#include <QPainter>
 //Timelinemenager::Timelinemenager()
 //{
 
 //}
 Timelinemenager::Timelinemenager(QList<Task *> &toDoTasks,QList <Task*> &inProgressTasks,QList <Task*> &doneTasks,QList <Task*> &calendarTasks): toDoTasks(toDoTasks), inProgressTasks(inProgressTasks),doneTasks(doneTasks),calendarTasks(calendarTasks)
 {
+    m_outlinePen.setColor(Qt::red);
+    m_transparentBrush.setColor(Qt::transparent);
 
 }
 void Timelinemenager::readtimeline(QString date)
@@ -60,8 +63,28 @@ void Timelinemenager::readtimeline(QString date)
     }
 
 
+
 }
 
+void Timelinemenager::highlight(QPainter *painter, const QRect &rect, const QDate &date)
+{
+    QCalendarWidget::paintCell(painter, rect, date);
+
+    for(auto task1:toDoTasks)
+    {
+        QString Data = task1->getStartingData();
+        QDate Date = QDate::fromString(Data,"dd/MM/yyyy");
+
+    if (date == Date)
+    {
+        painter->setPen(m_outlinePen);
+        painter->setBrush(m_transparentBrush);
+        painter->drawRect(rect.adjusted(0, 0, -1, -1));
+    }
+    }
+
+
+}
 
 void Timelinemenager::cleanup()
 {

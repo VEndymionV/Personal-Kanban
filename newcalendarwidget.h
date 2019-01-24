@@ -6,7 +6,7 @@
 #include <QDate>
 #include <QPen>
 #include <QBrush>
-
+#include "task.h"
 class NewCalendarWidget : public QCalendarWidget
 {
 Q_OBJECT

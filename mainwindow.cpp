@@ -11,7 +11,7 @@
 #include <QJsonArray>
 #include <QList>
 #include "stylesheet.h"
-
+#include <QPainter>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow), nightModeIconOn(":/res/icons/switchON256n.png"), nightModeIconOff(":/res/icons/switchOFF256.png"),KanbanNI(":/res/icons/calendar256n.png"),TimelineNI(":/res/icons/tmeline256n.png"),
@@ -211,7 +211,7 @@ void MainWindow::on_pBtn_Settings_clicked()
                                       "color:black;"
                                       "border: 1px solid black;");
 
-        ui->scrollArea->setStyleSheet("background-color:white;");
+
 
         ui->pBtn_TODO->setStyleSheet("background-color:lightgray;"
                                      "color:black;"

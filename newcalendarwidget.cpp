@@ -1,6 +1,6 @@
-#include <qpainter>
+#include <QPainter>
 #include "newcalendarwidget.h"
-
+#include "task.h"
 NewCalendarWidget::NewCalendarWidget(QWidget *parent)
    : QCalendarWidget(parent)
 {
@@ -23,6 +23,7 @@ QColor NewCalendarWidget::getColor()
 {
    return (m_outlinePen.color());
 }
+
 
 void NewCalendarWidget::paintCell(QPainter *painter, const QRect &rect, const QDate &date) const
 {
