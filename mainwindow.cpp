@@ -143,7 +143,7 @@ void MainWindow::on_pBtn_Settings_clicked()
                                          "color:white;"
                                          "border: 1px solid white;");
 
-//Task::strzalks(LeftNI,RightNI);
+     //Task::strzalks(LeftNI,RightNI);
 //scrollAreaWidgetContents_7
 
         ui->pBtn_NightMode->setIcon(nightModeIconOn);
@@ -225,6 +225,7 @@ void MainWindow::on_pBtn_Settings_clicked()
                                          "border: 1px solid black;");
 
         //setStyleSheet( mywidget_style_light );
+
 
     }
 }

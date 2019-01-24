@@ -31,7 +31,8 @@ SOURCES += \
     task.cpp \
     taskmanagement.cpp \
     jsonmanager.cpp \
-    timelinemenager.cpp
+    timelinemenager.cpp \
+    newcalendarwidget.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,7 +41,8 @@ HEADERS += \
     taskmanagement.h \
     jsonmanager.h \
     stylesheet.h \
-    timelinemenager.h
+    timelinemenager.h \
+    newcalendarwidget.h
 
 FORMS += \
         mainwindow.ui \

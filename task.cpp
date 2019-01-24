@@ -89,8 +89,8 @@ void Task::strzalks(QIcon LeftNI,QIcon RightNI)
     ui->pushButton_left->setStyleSheet("background-color:black;"
                                    "color:white;");
 
-    ui->pushButton_left->setIcon(RightNI);
-    ui->pushButton_left->setStyleSheet("background-color:black;"
+    ui->pushButton_right->setIcon(RightNI);
+    ui->pushButton_right->setStyleSheet("background-color:black;"
                                    "color:white;");
 
 }
