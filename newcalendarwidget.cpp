@@ -1,6 +1,7 @@
 #include <QPainter>
 #include "newcalendarwidget.h"
 #include "task.h"
+#include "taskmanagement.h"
 NewCalendarWidget::NewCalendarWidget(QWidget *parent)
    : QCalendarWidget(parent)
 {

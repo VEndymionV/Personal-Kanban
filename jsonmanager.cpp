@@ -13,7 +13,42 @@ JsonManager::JsonManager(QList<Task *> &toDoTasks,QList <Task*> &inProgressTasks
 
 }
 
-bool JsonManager::saveToJsonFile()
+bool JsonManager::saveToJsonFile(const QString &fileName)
+{
+    QFile jsonFile(fileName);
+
+    if(!jsonFile.open(QIODevice::WriteOnly)){
+        qWarning("Nie mozna otworzyc pliku do zapisu!");
+        return false;
+    }
+
+    QJsonArray jsonArray;
+
+    for(auto task : toDoTasks){
+        jsonArray.push_back(write(task, 1));
+    }
+
+    for(auto task2: inProgressTasks)
+    {
+        jsonArray.push_back(write(task2, 2));
+    }
+
+    for(auto task3: doneTasks)
+    {
+        jsonArray.push_back(write(task3, 3));
+    }
+
+    QJsonDocument jsonDocument(jsonArray);
+
+    jsonFile.write(jsonDocument.toJson());
+
+    jsonFile.close();
+
+    return true;
+}
+
+
+bool JsonManager::saveToJsonFiles()
 {
     QFile jsonFile("toDoTasks.json");
     QFile jsonFile2("inProgressTasks.json");
@@ -33,7 +68,7 @@ bool JsonManager::saveToJsonFile()
     QJsonArray jsonArray3;
 
     for(auto task : toDoTasks){
-        jsonArray.push_back(write(task));
+        jsonArray.push_back(write(task, 0));
 //        jsonObjects.push_back(QJsonObject());
 //        if(!write(jsonObjects.back(), task)){
 //            return false;
@@ -43,11 +78,11 @@ bool JsonManager::saveToJsonFile()
     }
     for(auto task2: inProgressTasks)
     {
-        jsonArray2.push_back(write(task2));
+        jsonArray2.push_back(write(task2, 0));
     }
     for(auto task3: doneTasks)
     {
-        jsonArray3.push_back(write(task3));
+        jsonArray3.push_back(write(task3, 0));
     }
 
     QJsonDocument jsonDocument(jsonArray);
@@ -64,7 +99,59 @@ bool JsonManager::saveToJsonFile()
     return true;
 }
 
-bool JsonManager::loadFromJsonFile(int wsk,QString name)//wsk nam mowi, ktora warstwa wczytujemy 0-todo 1-inprogress 2-done
+bool JsonManager::loadFromJsonFile(const QString &fileName)
+{
+    QFile jsonFile(fileName);
+
+    if(!jsonFile.open(QIODevice::ReadOnly)){
+        qWarning("Nie mozna otworzyc pliku do odczytu!");
+        return false;
+    }
+
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(jsonFile.readAll());
+
+    QJsonArray jsonArray(jsonDocument.array());
+
+    QVector <Task::TaskData*> tasksData; // wolałbym tutaj bez wskaźnika
+    for(auto jsonObject : jsonArray){
+
+        tasksData.push_back(new Task::TaskData(jsonObject.toObject()["name"].toString(),
+                jsonObject.toObject()["description"].toString(),
+                jsonObject.toObject()["priority"].toString(),
+                jsonObject.toObject()["beginDate"].toString(),
+                jsonObject.toObject()["beginTime"].toString(),
+                jsonObject.toObject()["endDate"].toString(),
+                jsonObject.toObject()["endTime"].toString()));
+
+        QString type = jsonObject.toObject()["type"].toString();
+
+        qDebug() << type;
+
+        if(type == "toDo"){
+            toDoTasks.push_back(new Task(*(tasksData.last())));
+        }
+        else if(type == "inProgress"){
+            inProgressTasks.push_back(new Task(*(tasksData.last())));
+        }
+        else if(type == "done"){
+            doneTasks.push_back(new Task(*(tasksData.last())));
+        }
+    }
+
+
+    // tymczasowe czyszczenie pamieci po vectorze
+    for(auto it = tasksData.begin(); it != tasksData.end(); ++it){
+        delete (*it);
+    }
+
+    tasksData.clear();
+
+    jsonFile.close();
+
+    return true;
+}
+
+bool JsonManager::loadFromJsonFiles(int wsk, QString name)//wsk nam mowi, ktora warstwa wczytujemy 0-todo 1-inprogress 2-done
 {
     QFile jsonFile(name);
 
@@ -87,15 +174,15 @@ bool JsonManager::loadFromJsonFile(int wsk,QString name)//wsk nam mowi, ktora wa
                 jsonObject.toObject()["endDate"].toString(),
                 jsonObject.toObject()["endTime"].toString()));
     }
-    if(wsk==0)
+    if(wsk == 0)
     for(auto taskData : tasksData){
         toDoTasks.push_back(new Task(*taskData));
     }
-    if(wsk==1)
+    else if(wsk == 1)
     for(auto taskData : tasksData){
         inProgressTasks.push_back(new Task(*taskData));
     }
-    if(wsk==2)
+    else if(wsk == 2)
     for(auto taskData : tasksData){
         doneTasks.push_back(new Task(*taskData));
     }
@@ -129,7 +216,7 @@ bool JsonManager::write(QJsonObject &jsonObject, Task *task) const
     return true;
 }
 
-QJsonObject JsonManager::write(Task *task) const
+QJsonObject JsonManager::write(Task *task, int type) const
 {
     Task::TaskData taskData = task->getTaskData();
 
@@ -142,6 +229,22 @@ QJsonObject JsonManager::write(Task *task) const
     jsonObject["beginTime"] = taskData.beginTime;
     jsonObject["endDate"] = taskData.endDate;
     jsonObject["endTime"] = taskData.endTime;
+
+    switch(type){
+    case 0:
+        break;
+    case 1:
+        jsonObject["type"] = "toDo";
+        break;
+    case 2:
+        jsonObject["type"] = "inProgress";
+        break;
+    case 3:
+        jsonObject["type"] = "done";
+        break;
+    default:
+        break;
+    }
 
     return jsonObject;
 }

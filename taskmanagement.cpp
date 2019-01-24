@@ -11,9 +11,9 @@
 TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done,QVBoxLayout *calendar)
     : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done),calendarLayout(calendar),jsonManager(toDoTasks,inProgressTasks,doneTasks),timelinemenager(toDoTasks,inProgressTasks,doneTasks,calendarTasks)
 {
-    jsonManager.loadFromJsonFile(0,"toDoTasks.json");
-    jsonManager.loadFromJsonFile(1,"inProgressTasks.json");
-    jsonManager.loadFromJsonFile(2,"doneTasks.json");
+    jsonManager.loadFromJsonFiles(0, "toDoTasks.json");
+    jsonManager.loadFromJsonFiles(1, "inProgressTasks.json");
+    jsonManager.loadFromJsonFiles(2, "doneTasks.json");
 
     for(auto task : toDoTasks){
         QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
@@ -108,7 +108,27 @@ void TaskManagement::addNew(Task* A)
 
 }
 
+void TaskManagement::loadFromJsonFile(const QString &fileName)
+{
+    if(jsonManager.loadFromJsonFile(fileName)){
+        for(auto task : toDoTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
+        for(auto task : inProgressTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
 
+        for(auto task : doneTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
+    }
+}
 void TaskManagement::addFewTasks()
 {
     QString arr[] = {"Morele", "Gruszki", "Jabłka", "Kolega", "Dzwon", "Olejek", "Alkohol", "Mandarynka", "Karta",
@@ -194,7 +214,7 @@ void TaskManagement::refreshLayouts(bool timeline) {
     }
 
     //timelinemenager.readtimeline("RIFRESZ MI SENPAJ");
-    jsonManager.saveToJsonFile();
+    jsonManager.saveToJsonFiles();
 
 
     //tutaj wstawić zapisywanie do jsona

@@ -12,6 +12,7 @@
 #include <QList>
 #include "stylesheet.h"
 #include <QPainter>
+#include <QFileDialog>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow), nightModeIconOn(":/res/icons/switchON256n.png"), nightModeIconOff(":/res/icons/switchOFF256.png"),KanbanNI(":/res/icons/calendar256n.png"),TimelineNI(":/res/icons/tmeline256n.png"),
@@ -36,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    taskManagement->jsonManager.saveToJsonFile();
+   taskManagement->jsonManager.saveToJsonFiles();
     delete ui;
 }
 
@@ -266,4 +267,33 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date)
     qDebug()<<tmp;
     taskManagement->timelinemenager.readtimeline(tmp); //pkeeee
     taskManagement->refreshLayouts(true);
+}
+
+void MainWindow::on_pBtn_SaveToFile_clicked()
+{
+    QFileDialog fileDialog(this);
+    //    fileDialog.setNameFilter("All C++ files (*.cpp *.cc *.C *.cxx *.c++)");
+    //    fileDialog.setNameFilter("Pliki json (*.json)");
+    //    fileDialog.exec();
+        fileDialog.setDefaultSuffix("json");
+        QString fileName = fileDialog.getSaveFileName(this, "...");
+    //    QString fileName = QFileDialog::getSaveFileName(this, "Wybierz gdzie zapisać plik", "wtf??");
+        qDebug() << fileName;
+        taskManagement->jsonManager.saveToJsonFile(fileName);
+}
+
+
+void MainWindow::on_pBtn_LoadFromFile_clicked()
+{
+    QFileDialog fileDialog(this);
+
+        fileDialog.setNameFilter("Pliki json (*.json)");
+    //    fileDialog.exec();
+    //    fileDialog.setDefaultSuffix("json");
+        QString fileName = fileDialog.getOpenFileName(this, "Wskaż plik .json");
+    //    QString fileName = QFileDialog::getSaveFileName(this, "Wybierz gdzie zapisać plik", "wtf??");
+        qDebug() << fileName;
+    //    taskManagement->jsonManager.loadFromJsonFile(fileName);
+        taskManagement->loadFromJsonFile(fileName);
+        taskManagement->refreshLayouts();
 }

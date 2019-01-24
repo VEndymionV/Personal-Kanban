@@ -51,6 +51,7 @@ private:
 public:
     JsonManager jsonManager;
     Timelinemenager timelinemenager;
+    void loadFromJsonFile(const QString &fileName);
     /*
      * Sloty otrzymują sygnał z konkretnego obiektu klasy Task, rozpoznają go po jego polach - id oraz layoutNumber
     */

@@ -64,6 +64,8 @@ void Timelinemenager::readtimeline(QString date)
 
 
 
+//Timelinemenager::highlight()
+
 }
 
 void Timelinemenager::highlight(QPainter *painter, const QRect &rect, const QDate &date)

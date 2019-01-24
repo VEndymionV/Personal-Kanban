@@ -259,19 +259,21 @@ QScrollBar {
        </font>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QLabel" name="label">
-          <property name="font">
-           <font>
-            <pointsize>22</pointsize>
-           </font>
-          </property>
+         <widget class="QPushButton" name="pBtn_SaveToFile">
           <property name="text">
-           <string>Podsumowanie</string>
+           <string>Zapisz do pliku</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pBtn_LoadFromFile">
+          <property name="text">
+           <string>Wczytaj z pliku</string>
           </property>
          </widget>
         </item>
@@ -328,8 +330,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>345</width>
-               <height>378</height>
+               <width>98</width>
+               <height>60</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -474,8 +476,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>345</width>
-               <height>378</height>
+               <width>98</width>
+               <height>28</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
@@ -539,8 +541,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>344</width>
-               <height>378</height>
+               <width>98</width>
+               <height>28</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_11">
