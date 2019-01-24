@@ -45,7 +45,7 @@ public:
          QString taskEndTime);
     Task(TaskData taskData);
     ~Task();
-
+    void strzalks(QIcon ,QIcon );
     static bool caseInsensitiveByName(const Task *a, const Task *b);
     static bool caseInsensitiveByDate(const Task &a, const Task &b);
 
@@ -74,6 +74,7 @@ private:
     QString taskBeginTime;
     QString taskEndTime;
     QLabel *nameLabel;
+
     int wsk; //gdzie się znajduje zadanie
 
 

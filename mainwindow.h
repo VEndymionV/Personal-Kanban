@@ -62,6 +62,24 @@ private:
     // icons:
     QIcon nightModeIconOn;
     QIcon nightModeIconOff;
+    QIcon KanbanNI;
+    QIcon StatsNI;
+    QIcon SummaryNI;
+    QIcon TimelineNI;
+    QIcon NotificationsNI;
+    QIcon SettingsNI;
+    QIcon AddNI;
+    QIcon LeftNI;
+    QIcon RightNI;
+
+    QIcon KanbanN;
+    QIcon StatsN;
+    QIcon SummaryN;
+    QIcon TimelineN;
+    QIcon NotificationsN;
+    QIcon SettingsN;
+    QIcon AddN;
+
     bool nightMode;
     // temp
     //TaskDialog taskDialog;
