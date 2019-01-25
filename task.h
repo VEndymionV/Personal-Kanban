@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QLabel>
 #include <QLinkedList>
+#include <QIcon>
 namespace Ui {
 class Task;
 }
@@ -35,6 +36,7 @@ public:
         QString beginTime;
         QString endDate;
         QString endTime;
+
     };
     // Sama data
     Task(QString taskName, QString taskDescription, QString taskPriority,
@@ -45,7 +47,8 @@ public:
          QString taskEndTime);
     Task(TaskData taskData);
     ~Task();
-    void strzalks(QIcon ,QIcon );
+
+    void strzalks(const QIcon , const QIcon );
     static bool caseInsensitiveByName(const Task *a, const Task *b);
     static bool caseInsensitiveByDate(const Task &a, const Task &b);
 
@@ -55,6 +58,7 @@ public:
 
     TaskData getTaskData();
     QString getStartingData();
+    QString getEndingData();
 
 private slots:
     void on_pushButton_right_clicked();
@@ -74,6 +78,7 @@ private:
     QString taskBeginTime;
     QString taskEndTime;
     QLabel *nameLabel;
+
 
     int wsk; //gdzie się znajduje zadanie
 

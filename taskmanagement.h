@@ -48,6 +48,7 @@ private:
     QList <Task*> inProgressTasks;
     QList <Task*> doneTasks;
     QList <Task*> calendarTasks;
+
 public:
     JsonManager jsonManager;
     Timelinemenager timelinemenager;

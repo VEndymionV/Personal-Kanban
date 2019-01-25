@@ -99,6 +99,7 @@ void TaskManagement::LoadTasks(QString filename)
     QObject::connect(tsk, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
     QObject::connect(tsk, &Task::removeClicked, this, &TaskManagement::deleteTask);
     refreshLayouts();
+
 }
 
 void TaskManagement::addNew(Task* A)

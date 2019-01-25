@@ -259,7 +259,7 @@ QScrollBar {
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="page">
        <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -330,7 +330,7 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>98</width>
+               <width>40</width>
                <height>60</height>
               </rect>
              </property>
@@ -476,8 +476,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>98</width>
-               <height>28</height>
+               <width>40</width>
+               <height>20</height>
               </rect>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout">
@@ -541,8 +541,8 @@ QScrollBar {
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>98</width>
-               <height>28</height>
+               <width>40</width>
+               <height>20</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_11">

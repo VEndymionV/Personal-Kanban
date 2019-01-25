@@ -83,7 +83,7 @@ Task::~Task()
 
 }
 
-void Task::strzalks(QIcon LeftNI,QIcon RightNI)
+void Task::strzalks( QIcon LeftNI, QIcon RightNI)
 {
     ui->pushButton_left->setIcon(LeftNI);
     ui->pushButton_left->setStyleSheet("background-color:black;"
@@ -121,6 +121,11 @@ Task::TaskData Task::getTaskData()
 QString Task::getStartingData()
 {
     return taskBeginDate;
+}
+
+QString Task::getEndingData()
+{
+    return taskEndDate;
 }
 //przesunięcie zadania w prawo
 void Task::on_pushButton_right_clicked()

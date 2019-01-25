@@ -15,6 +15,7 @@ public:
     void readtimeline(QString date);
     void highlight(QPainter *painter, const QRect &rect, const QDate &date);
     void cleanup();
+    void datetofile();
     QList <Task*> &toDoTasks; // referencja na kontener z klasy TaskManager
     QList <Task*> &inProgressTasks; // referencja na kontener z klasy TaskManager
     QList <Task*> &doneTasks; // referencja na kontener z klasy TaskManager

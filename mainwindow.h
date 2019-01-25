@@ -6,7 +6,8 @@
 #include "taskdialog.h"
 
 #include "taskmanagement.h"
-
+#include <QFile>
+#include "newcalendarwidget.h"
 namespace Ui {
 class MainWindow;
 }
@@ -88,6 +89,7 @@ private:
     // temp
     //TaskDialog taskDialog;
     TaskManagement *taskManagement;
+    NewCalendarWidget * m_manager;
 };
 
 #endif // MAINWINDOW_H

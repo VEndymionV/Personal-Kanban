@@ -2,11 +2,14 @@
 #define NEWCALENDARWIDGET_H
 
 #include <QCalendarWidget>
+#include <QStringList>
+#include <QBrush>
 #include <QColor>
+#include <QFile>
+#include <QList>
 #include <QDate>
 #include <QPen>
-#include <QBrush>
-#include "task.h"
+
 class NewCalendarWidget : public QCalendarWidget
 {
 Q_OBJECT
@@ -18,15 +21,22 @@ public:
    ~NewCalendarWidget();
 
    void setColor(QColor& color);
-   QColor getColor();
+   QColor getColor() const;
 
 protected:
    virtual void paintCell(QPainter *painter, const QRect &rect, const QDate &date) const;
 
 private:
-   QDate m_currentDate;
+
+   QDate date;
+   QString name;
+
+   QList<QDate> m_dates;
    QPen m_outlinePen;
    QBrush m_transparentBrush;
+
+   void getDates();
+
 };
 
 #endif // NEWCALENDARWIDGET_H

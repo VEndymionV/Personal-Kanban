@@ -8,6 +8,7 @@
 #include <QVector>
 #include <QCalendarWidget>
 #include <QPainter>
+#include <QFile>
 //Timelinemenager::Timelinemenager()
 //{
 
@@ -41,7 +42,7 @@ void Timelinemenager::readtimeline(QString date)
     for(auto task1:toDoTasks)
     {
 
-    if(task1->getStartingData()==date) //
+    if(task1->getEndingData()==date) //
     {
         //calendarTasks.push_back(task1);
         Task* tmp=new Task(task1->getTaskData());
@@ -52,7 +53,7 @@ void Timelinemenager::readtimeline(QString date)
     }
     for(auto task2:inProgressTasks)
     {
-        if(task2->getStartingData()==date)
+        if(task2->getEndingData()==date)
 
         {
             Task* tmp=new Task(task2->getTaskData());
@@ -64,29 +65,11 @@ void Timelinemenager::readtimeline(QString date)
 
 
 
-//Timelinemenager::highlight()
-
-}
-
-void Timelinemenager::highlight(QPainter *painter, const QRect &rect, const QDate &date)
-{
-    QCalendarWidget::paintCell(painter, rect, date);
-
-    for(auto task1:toDoTasks)
-    {
-        QString Data = task1->getStartingData();
-        QDate Date = QDate::fromString(Data,"dd/MM/yyyy");
-
-    if (date == Date)
-    {
-        painter->setPen(m_outlinePen);
-        painter->setBrush(m_transparentBrush);
-        painter->drawRect(rect.adjusted(0, 0, -1, -1));
-    }
-    }
 
 
 }
+
+
 
 void Timelinemenager::cleanup()
 {
@@ -94,5 +77,37 @@ void Timelinemenager::cleanup()
     {
         calendarTasks.pop_back();
     }
+
+}
+
+void Timelinemenager::datetofile()
+{
+     QFile fp("daty.csv");
+     qDebug()<<"utworzono plik";
+     fp.open( QFile::WriteOnly| QFile::Truncate);
+
+
+    for(auto task1:toDoTasks)
+    {
+         QTextStream out(&fp);
+         out<<task1->getEndingData()<<endl;
+
+
+    }
+
+    for(auto task2:inProgressTasks)
+    {
+
+
+        QTextStream out(&fp);
+        out<<task2->getEndingData()<<endl;
+
+
+    }
+    fp.close();
+
+
+
+
 
 }

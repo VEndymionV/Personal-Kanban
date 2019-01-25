@@ -21,11 +21,15 @@ MainWindow::MainWindow(QWidget *parent) :
     nightMode(false)
 
 {
+
     ui->setupUi(this);
+
     ui->stackedWidget->setCurrentIndex(StackedIndex::KANBAN);
+
     setStyleSheet( mywidget_style_light );
     taskManagement = new TaskManagement(ui->centralVLayout_Todo, ui->centralVLayout_InProgress, ui->centralVLayout_Done,ui->calendar_Layout);
     //JsonManager jsonmanager(taskManagement->toDoTasks,taskManagement->inProgressTasks,taskManagement->doneTasks)
+    taskManagement->timelinemenager.datetofile();
 
     //taskManagement->jsonManager.loadFromJsonFile(0,"toDoTasks.json");
     //taskManagement->jsonManager.loadFromJsonFile(1,"inProgressTasks.json");
@@ -234,11 +238,12 @@ void MainWindow::on_pBtn_Settings_clicked()
 void MainWindow::on_pBtn_TodoAdd_clicked() {
 
     taskManagement->addNewTask();
+    //taskManagement->timelinemenager.datetofile();
 }
 
 void MainWindow::on_pBtn_InProgressAdd_clicked()
 {
-//próbne wczytywanie
+    taskManagement->timelinemenager.datetofile();
 
 }
 
@@ -264,6 +269,7 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
 //    taskManagement->timelinemenager.cleanup(); //nic nie robi w sumie
     QString tmp=date.toString("ddd MMM d yyyy");
+   // QDate dupa = QDate::fromString(tmp,"ddd MMM d yyyy");
     qDebug()<<tmp;
     taskManagement->timelinemenager.readtimeline(tmp); //pkeeee
     taskManagement->refreshLayouts(true);
