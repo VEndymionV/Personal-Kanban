@@ -25,8 +25,76 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->stackedWidget->setCurrentIndex(StackedIndex::KANBAN);
+    setStyleSheet("background-color:lightgray;");
+    ui->label_InProgress->setStyleSheet("background-color:lightgray;"
+                                         "color:black;");
+    ui->label_Todo->setStyleSheet("background-color:lightgray;"
+                                         "color:black;");
+    ui->label_Done->setStyleSheet("background-color:lightgray;"
+                                      "color:black;");
 
-    setStyleSheet( mywidget_style_light );
+    ui->pBtn_Kanban->setIcon(KanbanN);
+    ui->pBtn_Kanban->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+
+    ui->pBtn_Stats->setIcon(StatsN);
+    ui->pBtn_Stats->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+    ui->pBtn_Summary->setIcon(SummaryN);
+    ui->pBtn_Summary->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+    ui->pBtn_Timeline->setIcon(TimelineN);
+    ui->pBtn_Timeline->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+    ui->pBtn_Notifications->setIcon(NotificationsN);
+    ui->pBtn_Notifications->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+    ui->pBtn_Settings->setIcon(SettingsN);
+    ui->pBtn_Settings->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+    ui->pBtn_DoneAdd->setIcon(AddN);
+    ui->pBtn_DoneAdd->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+    ui->pBtn_TodoAdd->setIcon(AddN);
+    ui->pBtn_TodoAdd->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+    ui->pBtn_InProgressAdd->setIcon(AddN);
+    ui->pBtn_InProgressAdd->setStyleSheet("background-color:lightgray;"
+                                   "color:black;");
+    ui->line->setStyleSheet("color:black;"
+                            );
+    ui->line_2->setStyleSheet("color:black;"
+                            );
+    ui->line_3->setStyleSheet("color:black;"
+                            );
+    ui->line_4->setStyleSheet("color:black;"
+                            );
+    ui->scrollAreaWidgetContents_3->setStyleSheet("background-color:lightgray;"
+                                  "color:black;"
+                                  "border: 1px solid black;");
+    ui->scrollAreaWidgetContents_4->setStyleSheet("background-color:lightgray;"
+                                  "color:black;"
+                                  "border: 1px solid black;");
+    ui->scrollAreaWidgetContents_6->setStyleSheet("background-color:lightgray;"
+                                  "color:black;"
+                                  "border: 1px solid black;");
+    ui->scrollAreaWidgetContents_7->setStyleSheet("background-color:lightgray;"
+                                  "color:black;"
+                                  "border: 1px solid black;");
+
+
+
+    ui->pBtn_TODO->setStyleSheet("background-color:lightgray;"
+                                 "color:black;"
+                                 "border: 1px solid black;"
+                                    );
+    ui->pBtn_AddFew->setStyleSheet("background-color:lightgray;"
+                                   "color:black;"
+                                   "border: 1px solid black;");
+   ui->calendarWidget->setStyleSheet("background-color:lightgray;"
+                                     "color:black;"
+                                     "border: 1px solid black;");
+
     taskManagement = new TaskManagement(ui->centralVLayout_Todo, ui->centralVLayout_InProgress, ui->centralVLayout_Done,ui->calendar_Layout);
     //JsonManager jsonmanager(taskManagement->toDoTasks,taskManagement->inProgressTasks,taskManagement->doneTasks)
     taskManagement->timelinemenager.datetofile();
@@ -81,41 +149,41 @@ void MainWindow::on_pBtn_Settings_clicked()
     if(nightMode)
     {
 
-        setStyleSheet("background-color:black;");
-        ui->label_InProgress->setStyleSheet("background-color:black;"
+        setStyleSheet("background-color:dimgray;");
+        ui->label_InProgress->setStyleSheet("background-color:dimgray;"
                                              "color:white;");
-        ui->label_Todo->setStyleSheet("background-color:black;"
+        ui->label_Todo->setStyleSheet("background-color:dimgray;"
                                              "color:white;");
-        ui->label_Done->setStyleSheet("background-color:black;"
+        ui->label_Done->setStyleSheet("background-color:dimgray;"
                                           "color:white;");
 
         ui->pBtn_Kanban->setIcon(KanbanNI);
-        ui->pBtn_Kanban->setStyleSheet("background-color:black;"
+        ui->pBtn_Kanban->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
 
         ui->pBtn_Stats->setIcon(StatsNI);
-        ui->pBtn_Stats->setStyleSheet("background-color:black;"
+        ui->pBtn_Stats->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
         ui->pBtn_Summary->setIcon(SummaryNI);
-        ui->pBtn_Summary->setStyleSheet("background-color:black;"
+        ui->pBtn_Summary->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
         ui->pBtn_Timeline->setIcon(TimelineNI);
-        ui->pBtn_Timeline->setStyleSheet("background-color:black;"
+        ui->pBtn_Timeline->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
         ui->pBtn_Notifications->setIcon(NotificationsNI);
-        ui->pBtn_Notifications->setStyleSheet("background-color:black;"
+        ui->pBtn_Notifications->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
         ui->pBtn_Settings->setIcon(SettingsNI);
-        ui->pBtn_Settings->setStyleSheet("background-color:black;"
+        ui->pBtn_Settings->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
         ui->pBtn_DoneAdd->setIcon(AddNI);
-        ui->pBtn_DoneAdd->setStyleSheet("background-color:black;"
+        ui->pBtn_DoneAdd->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
         ui->pBtn_TodoAdd->setIcon(AddNI);
-        ui->pBtn_TodoAdd->setStyleSheet("background-color:black;"
+        ui->pBtn_TodoAdd->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
         ui->pBtn_InProgressAdd->setIcon(AddNI);
-        ui->pBtn_InProgressAdd->setStyleSheet("background-color:black;"
+        ui->pBtn_InProgressAdd->setStyleSheet("background-color:dimgray;"
                                        "color:white;");
         ui->line->setStyleSheet("color:white;"
                                 "border: 1px solid white;");
@@ -125,26 +193,26 @@ void MainWindow::on_pBtn_Settings_clicked()
                                 "border: 1px solid white;");
         ui->line_4->setStyleSheet("color:white;"
                                 "border: 1px solid white;");
-        ui->scrollAreaWidgetContents_3->setStyleSheet("background-color:black;"
+        ui->scrollAreaWidgetContents_3->setStyleSheet("background-color:dimgray;"
                                       "color:white;"
                                       "border: 1px solid white;");
-        ui->scrollAreaWidgetContents_4->setStyleSheet("background-color:black;"
+        ui->scrollAreaWidgetContents_4->setStyleSheet("background-color:dimgray;"
                                       "color:white;"
                                       "border: 1px solid white;");
-        ui->scrollAreaWidgetContents_6->setStyleSheet("background-color:black;"
+        ui->scrollAreaWidgetContents_6->setStyleSheet("background-color:dimgray;"
                                       "color:white;"
                                       "border: 1px solid white;");
-        ui->scrollAreaWidgetContents_7->setStyleSheet("background-color:black;"
+        ui->scrollAreaWidgetContents_7->setStyleSheet("background-color:dimgray;"
                                       "color:white;"
                                       "border: 1px solid white;");
-        ui->pBtn_TODO->setStyleSheet("background-color:black;"
+        ui->pBtn_TODO->setStyleSheet("background-color:dimgray;"
                                      "color:white;"
                                      "border: 1px solid white;"
                                         );
-        ui->pBtn_AddFew->setStyleSheet("background-color:black;"
+        ui->pBtn_AddFew->setStyleSheet("background-color:dimgray;"
                                        "color:white;"
                                        "border: 1px solid white;");
-       ui->calendarWidget->setStyleSheet("background-color:black;"
+       ui->calendarWidget->setStyleSheet("background-color:dimgray;"
                                          "color:white;"
                                          "border: 1px solid white;");
 
@@ -269,7 +337,7 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date)
 {
 //    taskManagement->timelinemenager.cleanup(); //nic nie robi w sumie
     QString tmp=date.toString("ddd MMM d yyyy");
-   // QDate dupa = QDate::fromString(tmp,"ddd MMM d yyyy");
+
     qDebug()<<tmp;
     taskManagement->timelinemenager.readtimeline(tmp); //pkeeee
     taskManagement->refreshLayouts(true);

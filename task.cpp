@@ -83,7 +83,7 @@ Task::~Task()
 
 }
 
-void Task::strzalks( QIcon LeftNI, QIcon RightNI)
+/*void Task::strzalks( QIcon LeftNI, QIcon RightNI)
 {
     ui->pushButton_left->setIcon(LeftNI);
     ui->pushButton_left->setStyleSheet("background-color:black;"
@@ -93,7 +93,7 @@ void Task::strzalks( QIcon LeftNI, QIcon RightNI)
     ui->pushButton_right->setStyleSheet("background-color:black;"
                                    "color:white;");
 
-}
+}*/
 bool Task::caseInsensitiveByName(const Task *a, const Task *b)
 {
     return a->taskName.toLower() < b->taskName.toLower();

@@ -1,6 +1,6 @@
 #include <QPainter>
 #include "newcalendarwidget.h"
-
+#include<QDebug>
 NewCalendarWidget::NewCalendarWidget(QWidget *parent)
    : QCalendarWidget(parent)
 {
@@ -59,7 +59,7 @@ while (!file.atEnd())
       line=line.simplified();
       date = QDate::fromString(line,"ddd MMM d yyyy");
 
-
+        qDebug()<<line;
 
       m_dates.append(date);
 
