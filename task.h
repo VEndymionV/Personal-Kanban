@@ -5,6 +5,7 @@
 #include <QDialog>
 #include <QLabel>
 #include <QLinkedList>
+#include <QIcon>
 namespace Ui {
 class Task;
 }
@@ -20,6 +21,23 @@ class Task : public QWidget
     Q_OBJECT
 
 public:
+    struct TaskData {
+        //TaskData(); // BEZ KONSTRUKTORA DOMYŚLNEGO QVECTOR POWODOWAŁ BŁĄD KOMPILACJI - SPRAWDZIĆ CZEMU TAK SIĘ DZIEJE
+        TaskData(QString name, QString description, QString priority,
+                 QString beginDate, QString beginTime, QString endDate,
+                 QString endTime) : name(name), description(description), priority(priority),
+            beginDate(beginDate), beginTime(beginTime), endDate(endDate), endTime(endTime){
+
+        }
+        QString name;
+        QString description;
+        QString priority;
+        QString beginDate;
+        QString beginTime;
+        QString endDate;
+        QString endTime;
+
+    };
     // Sama data
     Task(QString taskName, QString taskDescription, QString taskPriority,
          QString taskBeginDate, QString taskEndDate);
@@ -27,14 +45,20 @@ public:
     Task(QString taskName, QString taskDescription, QString taskPriority,
          QString taskBeginDate, QString taskEndDate, QString taskBeginTime,
          QString taskEndTime);
+    Task(TaskData taskData);
     ~Task();
 
+    void strzalks(const QIcon , const QIcon );
     static bool caseInsensitiveByName(const Task *a, const Task *b);
     static bool caseInsensitiveByDate(const Task &a, const Task &b);
 
     bool isTimeDisplayed();
     int id;
     Layout layoutNumber;
+
+    TaskData getTaskData();
+    QString getStartingData();
+    QString getEndingData();
 
 private slots:
     void on_pushButton_right_clicked();
@@ -54,6 +78,8 @@ private:
     QString taskBeginTime;
     QString taskEndTime;
     QLabel *nameLabel;
+
+
     int wsk; //gdzie się znajduje zadanie
 
 

@@ -4,11 +4,36 @@
 #include "task.h"
 #include <QDebug>
 #include <algorithm>
-
-TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done)
-    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done)
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <timelinemenager.h>
+TaskManagement::TaskManagement(QVBoxLayout *toDo, QVBoxLayout *inProgress, QVBoxLayout *done,QVBoxLayout *calendar)
+    : toDoLayout(toDo), inProgressLayout(inProgress), doneLayout(done),calendarLayout(calendar),jsonManager(toDoTasks,inProgressTasks,doneTasks),timelinemenager(toDoTasks,inProgressTasks,doneTasks,calendarTasks)
 {
+    jsonManager.loadFromJsonFiles(0, "toDoTasks.json");
+    jsonManager.loadFromJsonFiles(1, "inProgressTasks.json");
+    jsonManager.loadFromJsonFiles(2, "doneTasks.json");
 
+    for(auto task : toDoTasks){
+        QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+        QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+        QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    }
+    for(auto task : inProgressTasks){
+        QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+        QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+        QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    }
+
+    for(auto task : doneTasks){
+        QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+        QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+        QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    }
+
+
+    refreshLayouts();
 }
 
 void TaskManagement::addNewTask()
@@ -41,6 +66,70 @@ void TaskManagement::addNewTask()
     refreshLayouts();
 }
 
+void TaskManagement::addNewTask(Task::TaskData taskData)
+{
+    Task *task = new Task(taskData);
+
+    toDoTasks.push_back(task);
+
+    QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+    QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+    QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+
+    refreshLayouts();
+}
+void TaskManagement::LoadTasks(QString filename)
+{
+    QFile read(filename);
+    read.open(QFile::ReadOnly);
+    QJsonDocument docred=QJsonDocument().fromJson(read.readAll());
+    QJsonArray arr=docred.array();
+    QString name=docred["name"].toString();
+    QString priority=docred["priority"].toString();
+    QString description=docred["description"].toString();
+    QString beginDate=docred["beginDate"].toString();
+    QString endDate=docred["endDate"].toString();
+
+    Task *tsk=new Task(docred["name"].toString() ,docred["description"].toString(),docred["priority"].toString(),docred["beginDate"].toString(),docred["endDate"].toString());
+    //Task *tsk=new Task(name,description,priority,beginDate,endDate); //tak tez mozna, ale wtedy trzeba dodatkowe zmienne deklarowac
+    toDoTasks.push_front(tsk);
+
+    //toDoLayout->insertWidget(0,tsk);
+    QObject::connect(tsk, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+    QObject::connect(tsk, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+    QObject::connect(tsk, &Task::removeClicked, this, &TaskManagement::deleteTask);
+    refreshLayouts();
+
+}
+
+void TaskManagement::addNew(Task* A)
+{
+    toDoLayout->insertWidget(0,A);
+    refreshLayouts();
+
+}
+
+void TaskManagement::loadFromJsonFile(const QString &fileName)
+{
+    if(jsonManager.loadFromJsonFile(fileName)){
+        for(auto task : toDoTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
+        for(auto task : inProgressTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
+
+        for(auto task : doneTasks){
+            QObject::connect(task, &Task::leftClicked, this, &TaskManagement::moveTaskLeft);
+            QObject::connect(task, &Task::rightClicked, this, &TaskManagement::moveTaskRight);
+            QObject::connect(task, &Task::removeClicked, this, &TaskManagement::deleteTask);
+        }
+    }
+}
 void TaskManagement::addFewTasks()
 {
     QString arr[] = {"Morele", "Gruszki", "Jabłka", "Kolega", "Dzwon", "Olejek", "Alkohol", "Mandarynka", "Karta",
@@ -57,7 +146,28 @@ void TaskManagement::addFewTasks()
     refreshLayouts();
 }
 
-void TaskManagement::refreshLayouts() {
+void TaskManagement::refreshLayouts(bool timeline) {
+
+    if(timeline){
+
+        //michau
+        while(QLayoutItem *item = calendarLayout->takeAt(0)){
+            qDebug() << "Usuwam kalendarz";
+            delete item;
+        }
+
+        //Michau- dam tez tutaj odswiezanie kalendarza
+        int i = 0;
+
+        for(QList <Task*>::const_reverse_iterator it = calendarTasks.rbegin(); it != calendarTasks.rend(); ++it){
+            ++i;
+            (*it)->id = calendarTasks.size() - i;
+            //(*it)->layoutNumber = done;
+            calendarLayout->insertWidget(0, *it);
+        }
+        return;
+    }
+
 
     // Czyszczenie każdego z layoutów
     while(QLayoutItem *item = toDoLayout->takeAt(0)){
@@ -71,6 +181,9 @@ void TaskManagement::refreshLayouts() {
     while(QLayoutItem *item = doneLayout->takeAt(0)){
         delete item;
     }
+
+
+
     // Koniec czyszczenia
 
     int i = 0; // zmienna pomocnicza do ustalenia obecnego id taska
@@ -100,6 +213,12 @@ void TaskManagement::refreshLayouts() {
         (*it)->layoutNumber = done;
         doneLayout->insertWidget(0, *it);
     }
+
+    //timelinemenager.readtimeline("RIFRESZ MI SENPAJ");
+    jsonManager.saveToJsonFiles();
+
+
+    //tutaj wstawić zapisywanie do jsona
 }
 
 void TaskManagement::sortByName()

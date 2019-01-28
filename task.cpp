@@ -13,6 +13,7 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
     ui->name->setText(taskName);
     ui->priority->setText(taskPriority);
     ui->description->setText(taskDescription);
+    ui->description->setWordWrap(true);
     ui->beginDate->setText(taskBeginDate);
     ui->endDate->setText(taskEndDate);
 
@@ -37,12 +38,44 @@ Task::Task(QString taskName, QString taskDescription, QString taskPriority,
     ui->beginDate->setText(taskBeginDate);
     ui->endDate->setText(taskEndDate);
 
-    qDebug() << taskBeginTime << ", " << taskEndTime;
-
     ui->beginTime->setText(taskBeginTime);
     ui->endTime->setText(taskEndTime);
 
     layoutNumber = toDo;
+}
+
+Task::Task(Task::TaskData taskData) : ui(new Ui::Task)
+{
+    ui->setupUi(this);
+
+    ui->name->setText(taskData.name);
+    ui->priority->setText(taskData.priority);
+    ui->description->setText(taskData.description);
+    ui->beginDate->setText(taskData.beginDate);
+    ui->endDate->setText(taskData.endDate);
+
+    if(taskData.beginDate.isEmpty() || taskData.beginTime.isEmpty()){
+
+        ui->beginTime->hide();
+        ui->endTime->hide();
+        ui->BEGINTIME->hide();
+        ui->ENDTIME->hide();
+    }
+    else{
+        ui->beginTime->setText(taskData.beginTime);
+        ui->endTime->setText(taskData.endTime);
+    }
+
+    layoutNumber = toDo;
+
+    // TYMCZASOWO, TO TRZEBA ZROBIĆ PORZĄDNIE, PRZEBUDOWAĆ CAŁY PROJEKT ŻEBY SIĘ OPIERAŁ NA TEJ STRUKTURZE, NARAZIE TU JEST TOTALNY SYYYYF
+    taskName = taskData.name;
+    taskDescription = taskData.description;
+    taskPriority = taskData.priority;
+    taskBeginDate = taskData.beginDate;
+    taskEndDate = taskData.endDate;
+    taskBeginTime = taskData.beginTime;
+    taskEndTime = taskData.endTime;
 }
 
 Task::~Task()
@@ -50,6 +83,17 @@ Task::~Task()
 
 }
 
+/*void Task::strzalks( QIcon LeftNI, QIcon RightNI)
+{
+    ui->pushButton_left->setIcon(LeftNI);
+    ui->pushButton_left->setStyleSheet("background-color:black;"
+                                   "color:white;");
+
+    ui->pushButton_right->setIcon(RightNI);
+    ui->pushButton_right->setStyleSheet("background-color:black;"
+                                   "color:white;");
+
+}*/
 bool Task::caseInsensitiveByName(const Task *a, const Task *b)
 {
     return a->taskName.toLower() < b->taskName.toLower();
@@ -70,6 +114,19 @@ bool Task::isTimeDisplayed()
     return true;
 }
 
+Task::TaskData Task::getTaskData()
+{
+    return TaskData(taskName, taskDescription, taskPriority, taskBeginDate, taskBeginTime, taskEndDate, taskEndTime);
+}
+QString Task::getStartingData()
+{
+    return taskBeginDate;
+}
+
+QString Task::getEndingData()
+{
+    return taskEndDate;
+}
 //przesunięcie zadania w prawo
 void Task::on_pushButton_right_clicked()
 {

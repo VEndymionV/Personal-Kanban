@@ -15,5 +15,18 @@
         <file>res/icons/arrowL.png</file>
         <file>res/icons/arrowR.png</file>
         <file>res/icons/redX.png</file>
+        <file>res/icons/arrowLn.png</file>
+        <file>res/icons/arrowRn.png</file>
+        <file>res/icons/calendar256n.png</file>
+        <file>res/icons/diagram256n.png</file>
+        <file>res/icons/notification256n.png</file>
+        <file>res/icons/plus256n.png</file>
+        <file>res/icons/settings256n.png</file>
+        <file>res/icons/summary256n.png</file>
+        <file>res/icons/switchOFF256n.png</file>
+        <file>res/icons/switchON256n.png</file>
+        <file>res/icons/tmeline256n.png</file>
+        <file>res/icons/to-do256n.png</file>
+        <file>res/icons/wrench-and-screwdriver-in-cross256n.png</file>
     </qresource>
 </RCC>

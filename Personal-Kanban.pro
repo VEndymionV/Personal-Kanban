@@ -29,13 +29,20 @@ SOURCES += \
         mainwindow.cpp \
     taskdialog.cpp \
     task.cpp \
-    taskmanagement.cpp
+    taskmanagement.cpp \
+    jsonmanager.cpp \
+    timelinemenager.cpp \
+    newcalendarwidget.cpp
 
 HEADERS += \
         mainwindow.h \
     taskdialog.h \
     task.h \
-    taskmanagement.h
+    taskmanagement.h \
+    jsonmanager.h \
+    stylesheet.h \
+    timelinemenager.h \
+    newcalendarwidget.h
 
 FORMS += \
         mainwindow.ui \

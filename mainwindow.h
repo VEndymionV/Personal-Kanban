@@ -6,7 +6,8 @@
 #include "taskdialog.h"
 
 #include "taskmanagement.h"
-
+#include <QFile>
+#include "newcalendarwidget.h"
 namespace Ui {
 class MainWindow;
 }
@@ -53,15 +54,42 @@ private slots:
 
     void on_pBtn_AddFew_clicked();
 
+
+
+    void on_calendarWidget_clicked(const QDate &date);
+
+    void on_pBtn_SaveToFile_clicked();
+
+    void on_pBtn_LoadFromFile_clicked();
+
 private:
     Ui::MainWindow *ui;
     // icons:
     QIcon nightModeIconOn;
     QIcon nightModeIconOff;
+    QIcon KanbanNI;
+    QIcon StatsNI;
+    QIcon SummaryNI;
+    QIcon TimelineNI;
+    QIcon NotificationsNI;
+    QIcon SettingsNI;
+    QIcon AddNI;
+    QIcon LeftNI;
+    QIcon RightNI;
+
+    QIcon KanbanN;
+    QIcon StatsN;
+    QIcon SummaryN;
+    QIcon TimelineN;
+    QIcon NotificationsN;
+    QIcon SettingsN;
+    QIcon AddN;
+
     bool nightMode;
     // temp
     //TaskDialog taskDialog;
     TaskManagement *taskManagement;
+    NewCalendarWidget * m_manager;
 };
 
 #endif // MAINWINDOW_H
